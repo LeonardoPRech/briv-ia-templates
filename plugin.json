@@ -1,0 +1,39 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "author": {
+    "email": "leonardorech@icloud.com",
+    "name": "Leonardo Rech"
+  },
+  "description": "Otimiza templates do Briv.IA no Figma com composição preservada, assets reutilizáveis e índice de seleção baseado em evidências.",
+  "extensions": {
+    "com.openai": {
+      "apps": "./.app.json",
+      "interface": {
+        "capabilities": [],
+        "category": "Creativity",
+        "defaultPrompt": [
+          "Otimize os templates indicados do Briv.IA no Figma, organize assets e crie o índice sem alterar os originais.",
+          "Continue a otimização das cópias existentes, comparando cada etapa com o estado anterior e a referência aprovada.",
+          "Analise os templates do Briv.IA sem editar e indique quais modelos são adequados ao conteúdo solicitado."
+        ],
+        "developerName": "Leonardo Rech",
+        "displayName": "Briv.IA — Templates",
+        "longDescription": "Consolida o fluxo de otimização estrutural dos templates Briv.IA em conjunto com as referências da base de conhecimento disponibilizada no chat. Preserva originais e composição, separa fundo, filtro e pessoa, substitui máscaras herdadas quando houver alternativa fiel e reutilizável, organiza assets por padrão em página existente e mantém um índice de seleção baseado em observações e testes. Inclui continuação sem duplicação redundante, análise sem edição, integridade textual e comparação com o estado anterior e com a referência aprovada. Usa a integração Figma e as permissões do usuário; não contém um catálogo preenchido nem acesso automático a bases de conhecimento não conectadas.",
+        "shortDescription": "Otimize templates no Figma",
+        "logo": "./assets/briv-ia-e07b89ff.png",
+        "composerIcon": "./assets/briv-ia-e07b89ff.png",
+        "logoDark": "./assets/briv-ia-e07b89ff.png",
+        "composerIconDark": "./assets/briv-ia-e07b89ff.png"
+      }
+    }
+  },
+  "keywords": [
+    "briv-ia",
+    "figma",
+    "templates",
+    "assets",
+    "auto-layout"
+  ],
+  "name": "briv-ia-templates",
+  "version": "1.4.0"
+}

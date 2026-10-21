@@ -1,0 +1,6 @@
+interface:
+  display_name: "Otimizar templates Briv.IA"
+  short_description: "Estrutura, assets e seleção"
+  default_prompt: "Otimize os templates indicados do Briv.IA, preservando a composição e os originais, e organize assets e índice."
+policy:
+  allow_implicit_invocation: true

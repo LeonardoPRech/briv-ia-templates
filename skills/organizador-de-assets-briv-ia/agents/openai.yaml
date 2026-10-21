@@ -1,0 +1,6 @@
+interface:
+  display_name: "Organizador de assets Briv.IA"
+  short_description: "Organiza a página preservando as artes"
+  default_prompt: "Use $organizador-de-assets-briv-ia para organizar nomes, posições e sections dos materiais indicados do Briv.IA no Figma, preservando o interior e as dimensões das artes."
+policy:
+  allow_implicit_invocation: true

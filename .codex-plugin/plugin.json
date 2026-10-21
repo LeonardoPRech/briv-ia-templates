@@ -1,0 +1,35 @@
+{
+  "apps": "./.app.json",
+  "interface": {
+    "capabilities": [],
+    "category": "Creativity",
+    "defaultPrompt": [
+      "Otimize os templates indicados do Briv.IA no Figma, organize assets e crie o \u00edndice sem alterar os originais.",
+      "Continue a otimiza\u00e7\u00e3o das c\u00f3pias existentes, comparando cada etapa com o estado anterior e a refer\u00eancia aprovada.",
+      "Analise os templates do Briv.IA sem editar e indique quais modelos s\u00e3o adequados ao conte\u00fado solicitado."
+    ],
+    "developerName": "Leonardo Rech",
+    "displayName": "Briv.IA \u2014 Templates",
+    "longDescription": "Consolida o fluxo de otimiza\u00e7\u00e3o estrutural dos templates Briv.IA em conjunto com as refer\u00eancias da base de conhecimento disponibilizada no chat. Preserva originais e composi\u00e7\u00e3o, separa fundo, filtro e pessoa, substitui m\u00e1scaras herdadas quando houver alternativa fiel e reutiliz\u00e1vel, organiza assets por padr\u00e3o em p\u00e1gina existente e mant\u00e9m um \u00edndice de sele\u00e7\u00e3o baseado em observa\u00e7\u00f5es e testes. Inclui continua\u00e7\u00e3o sem duplica\u00e7\u00e3o redundante, an\u00e1lise sem edi\u00e7\u00e3o, integridade textual e compara\u00e7\u00e3o com o estado anterior e com a refer\u00eancia aprovada. Usa a integra\u00e7\u00e3o Figma e as permiss\u00f5es do usu\u00e1rio; n\u00e3o cont\u00e9m um cat\u00e1logo preenchido nem acesso autom\u00e1tico a bases de conhecimento n\u00e3o conectadas.",
+    "shortDescription": "Otimize templates no Figma",
+    "logo": "./assets/briv-ia-e07b89ff.png",
+    "composerIcon": "./assets/briv-ia-e07b89ff.png",
+    "logoDark": "./assets/briv-ia-e07b89ff.png",
+    "composerIconDark": "./assets/briv-ia-e07b89ff.png"
+  },
+  "name": "briv-ia-templates",
+  "version": "1.4.0",
+  "description": "Otimiza templates do Briv.IA no Figma com composi\u00e7\u00e3o preservada, assets reutiliz\u00e1veis e \u00edndice de sele\u00e7\u00e3o baseado em evid\u00eancias.",
+  "author": {
+    "name": "Leonardo Rech",
+    "email": "leonardorech@icloud.com"
+  },
+  "keywords": [
+    "briv-ia",
+    "figma",
+    "templates",
+    "assets",
+    "auto-layout"
+  ],
+  "skills": "./skills"
+}

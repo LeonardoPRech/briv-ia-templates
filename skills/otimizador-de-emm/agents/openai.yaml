@@ -1,0 +1,6 @@
+interface:
+  display_name: "Otimizador de EMM"
+  short_description: "E-mails escaláveis com auto-layout real"
+  default_prompt: "Use $otimizador-de-emm para reconstruir o e-mail selecionado em uma cópia ao lado, com seções simples em auto-layout real, largura do cliente, banners limpos e componentes compartilhados. Preserve a composição e valide crescimento de texto e fidelidade visual."
+policy:
+  allow_implicit_invocation: true
