@@ -99,9 +99,20 @@ Reutilizar a biblioteca existente, preservar fontes completas e acrescentar apen
 
 Atualizar o índice existente para apontar ao asset final consolidado e ao comportamento atual. Remover referências obsoletas dos registros de seleção sem apagar o acervo histórico por conveniência. Reexecuções não devem duplicar cópias, bibliotecas ou wrappers.
 
+## 13. Simplificar listas, bullets e checkboxes
+
+Usar uma pilha vertical com uma linha horizontal por item. Cada linha contém diretamente um ícone de tamanho fixo à esquerda e um texto Fill/Hug à direita; não criar wrappers individuais apenas para deslocamento, largura ou espaçamento. A largura da lista é controlada pela região útil; a linha é Fill/Hug e a soma de ícone, gap, texto e paddings deve caber nela.
+
+A altura dos containers e do suporte acompanha o conteúdo. Não usar clipping para ocultar overflow, larguras herdadas incompatíveis ou Hug horizontal em descrições que devem quebrar. Testar texto curto, multilinha e crescimento de um item intermediário, conferindo os vizinhos e o suporte.
+
+Entrelinha regula as linhas de um item; gap vertical regula a separação entre itens. Corrigir entrelinha artificial de importação com uma base compacta de 120% ou 130%, conforme a referência, e transferir a separação dos bullets para o gap inteiro da pilha. Não aproximar mecanicamente uma entrelinha inflada só para cumprir a normalização numérica. A [seção 14 da skill](../SKILL.md#14-listas-bullets-e-checkboxes-estrutura-mínima-e-limites-reais) contém o procedimento completo e a referência observada; 24 px é um exemplo, não um padrão universal.
+
 ## Critérios de aceitação
 
 - Cada container representa uma unidade útil.
+- Listas usam linhas horizontais diretas de ícone + texto Fill/Hug, empilhadas verticalmente, sem wrappers compensatórios.
+- Textos cabem na largura útil; linhas, lista e suporte comportam o crescimento.
+- O gap vertical separa itens; a entrelinha compacta organiza as linhas dentro de cada item.
 - Nenhum padding apenas repete a posição de canvas de uma caixa.
 - Texto e suporte permanecem vinculados durante a edição.
 - Fotografias, marcas e decorações possuem limites coerentes.

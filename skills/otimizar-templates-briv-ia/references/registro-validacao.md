@@ -42,7 +42,23 @@ Conferir a união ordenada dos trechos; não normalizar diferenças silenciosame
 | Peça/ID e trecho ou propriedade | Valor/unidade anterior | Valor/unidade final | Família/estilo preservados | Conferência visual e de quebras | Exceção ou pendência |
 | --- | --- | --- | --- | --- | --- |
 
-Conferir todas as caixas editáveis, incluindo trechos mistos: fontes em inteiros, entrelinhas explícitas em múltiplos de 10% e tracking com até uma casa decimal na unidade original. Registrar a fonte original usada na conversão de px para percentual e como AUTO foi resolvido. Não apresentar AUTO não resolvido como normalizado. Conferir x/y, dimensões, gaps, paddings e outras medidas em px; registrar frações mantidas por proporção, fluxo calculado, rotação ou fidelidade. Preservar estilos e variáveis globais. Distinguir ajustes intencionais de regressões.
+Conferir todas as caixas editáveis, incluindo trechos mistos: fontes inteiras, entrelinhas percentuais explícitas de 100%, 110%, 120%… e tracking com até uma casa decimal na unidade original. Registrar fonte original F0, fonte final inteira F1, altura efetiva original H0 e percentual final escolhido pela menor diferença em px, conforme a seção 13.1. Registrar como AUTO foi resolvido; AUTO não resolvido é pendência.
+
+Conferir x/y, dimensões, gaps, paddings, raios, espessuras, espaçamentos de parágrafo e outras medidas de layout em px de todos os objetos após o fluxo final. Frações restantes e outras violações são pendências com ID, propriedade, valor e motivo; não declarar conformidade integral. Coeficientes de transformação e pontos de curvas não se confundem com medidas de layout. Preservar estilos e variáveis globais. Distinguir ajustes intencionais de regressões.
+
+## Varredura de formatos nominais e microdesvios
+
+| Frame ID/nome | Evidência do formato nominal | Largura/altura nominal | Largura/altura real antes | Diferença por eixo em px e % | Dentro da tolerância | Ação e dimensões finais | Conferência visual e pendência |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+
+Inspecionar todos os frames principais. Usar a tolerância da seção 13.1: até 3 px e 0,5% em cada eixo, salvo limite explícito do usuário. Conferir o exemplo nominal 1080x1350 versus real 1081x1351, corrigido para 1080x1350 sem escalar toda a arte. Não tratar conversão de formato como microcorreção. Distinguir altura nominal fixa de altura Hug descritiva em e-mails. Repetir a varredura depois da normalização e da organização final.
+
+## Listas, bullets e checkboxes
+
+| Lista/ID | Referência aprovada | Estrutura final e wrappers removidos/justificados | Largura da linha, ícone, gap, padding e largura Fill do texto | Entrelinha por item e gap vertical | Testes curto/multilinha/crescimento e suporte/vizinhos | Limites, overflow e pendências |
+| --- | --- | --- | --- | --- | --- | --- |
+
+Conferir um auto-layout horizontal por item, ícone e texto diretos e pilha vertical. Confirmar Fill/Hug em todos os textos e contenção na largura útil, não apenas aparência na renderização atual. Registrar entrelinha compacta (normalmente 120% ou 130%) e espaço entre itens pelo gap; se a entrelinha original era um espaçador artificial, registrar a correção intencional em vez de preservar o valor inflado pela regra de aproximação. Registrar qualquer container adicional e sua função concreta. Testar crescimento intermediário, deslocamento dos próximos itens, manutenção do gap, suporte e chamada seguinte; remover o ensaio. Não afirmar teste executado sem evidência.
 
 ## Assets e testes de substituição
 
