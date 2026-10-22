@@ -78,15 +78,26 @@ Não usar uma coluna fixa de marcadores ao lado de um único bloco de texto com 
 
 Conferir especialmente textos brancos ou claros: seu fundo colorido deve ser reconstruído junto, para não sumirem no branco. Não rasterizar conteúdo do corpo.
 
-## 6. Pixels inteiros
+## 6. Pixel perfect em todo o e-mail
 
-No corpo, usar posições, larguras, paddings e gaps inteiros. Normalizar as pequenas escalas e inclinações acidentais da importação que produzam medidas fracionárias, preservando a aparência. Carregar fontes antes de alterar textos.
+Aplicar obrigatoriamente o procedimento de [normalização da seção 13.1 da skill geral](../otimizar-templates-briv-ia/SKILL.md#131-pixel-perfect-tipografia-posições-dimensões-e-formato-nominal) a todos os objetos e textos do e-mail, inclusive Header, Banner, Corpo, Extra, Footer e seus descendentes. Esta referência compartilha somente o procedimento de normalização e varredura de formatos; a otimização gráfica completa da skill geral continua limitada ao banner.
 
-Preservar a matriz completa de transformação quando ela representar um recorte, flip ou composição intencional. Não substituir transformações gráficas por x/y sem análise.
+- Dimensões, posições x/y, tamanhos de fonte, paddings, gaps, espaçamentos de parágrafo, raios, espessuras e outras medidas de layout em px devem ser inteiros em todos os objetos. Arredondar ao mais próximo, com empates para longe de zero, inclusive em valores negativos. A única medida tipográfica/de layout autorizada a ter decimal é o tracking, limitado a uma casa, na unidade original.
+- Em todas as caixas de texto, inclusive textos de uma linha e trechos com estilos mistos, converter a entrelinha para percentual explícito de **100%, 110%, 120%, 130%, 140%, 150%…**, sem teto. Não manter px, AUTO ou percentuais fracionários.
+- Antes de editar, registrar fonte original F0 e altura efetiva original H0 em px. Se a origem estiver em percentual P0, calcular H0 = F0 × P0 ÷ 100. Com a fonte final inteira F1, escolher P = máximo(100, 10 × arredondar(H0 ÷ F1 × 10)); no empate, escolher o maior percentual. Assim, a entrelinha final é a permitida mais próxima da altura original. Não arredondar H0 antes de converter.
+- Exemplo: fonte 20 px, entrelinha 23 px → 115% → **120%**; tracking 0,26 → **0,3**. Resolver AUTO pelas métricas ou linhas renderizadas, nunca pela altura total da caixa; se não for possível, registrar a pendência sem inventar 100%.
+- Carregar fontes antes de editar, tratar estilos mistos por trecho e preservar família, peso, conteúdo e destaques. Não alterar componentes ou estilos globais fora do escopo; registrar impedimentos.
+- Normalizar pequenas escalas e inclinações acidentais da importação. Preservar a matriz completa de transformação para recortes, flips e composições intencionais. Coeficientes de matriz, curvas, ângulos, opacidades e proporções não são medidas de layout em px.
+- Recalcular o fluxo de dentro para fora e reler o resultado: conferir Fill/Hug e meios pixels de centralização, ajustando dimensões, alinhamento e distribuição do espaço. Não arredondar curvas ou recortes cegamente, deformar fotos/pessoas/marcas, fixar alturas com corte ou usar “Ignorar layout automático” para esconder frações.
+- Se uma restrição real impedir medidas inteiras com o fluxo correto, relatar o ID e a propriedade como pendência. Não considerar a normalização integral concluída enquanto restarem frações de layout ou tipografia fora das regras.
 
-Normalizar tamanhos e entrelinhas do corpo ao pixel inteiro quando necessário para obter o layout solicitado; preservar as famílias e pesos e revisar as quebras. As regras tipográficas específicas da skill geral pertencem somente ao banner. Conferir os alinhamentos centrais: larguras ou alturas de paridades diferentes podem gerar meio pixel.
+### Varredura dos formatos
 
-Não arredondar cegamente curvas e recortes de imagens. Pixels inteiros de layout não autorizam deformar marcas, pessoas ou fotografias.
+Comparar todos os frames principais e artes de tamanho controlado com o formato nominal comprovado. Corrigir automaticamente somente microdesvios de até **3 px por eixo e 0,5% por eixo**, conforme a seção 13.1; ambos os eixos devem passar. Exemplo: arte nominal 1080x1350, real 1081x1351 → corrigir para **1080x1350**, sem escalar todo o conteúdo. Registrar antes/depois e conferir recortes, fundos, bordas, textos e colisões.
+
+Aplicar a largura padrão do cliente ao e-mail. A altura Hug total e as alturas dirigidas por conteúdo não devem ser forçadas para caber em uma altura antiga escrita no nome: conservar o crescimento correto e atualizar o nome descritivo após o layout final. A auditoria de medidas inteiras continua obrigatória.
+
+Repetir a leitura de dimensões, posições e tipografia após normalizar, após o fluxo recalcular e na verificação final, inclusive nos componentes compartilhados e após a organização externa. Medir todos os e-mails, sem usar somente um piloto como prova.
 
 ## 7. Otimizar somente a arte do banner com a skill geral
 
@@ -133,7 +144,11 @@ Para e-mails, usar o modelo seguido do tipo:
 - Section: `Modelo 5 - Vacinas`.
 - Frame: `E-mail / Modelo 5 - Vacinas / 600x1800`.
 
-O campo central reproduz exatamente a section de modelo. Manter as categorias existentes, usar sections nativas e os estilos, paddings e gaps do organizador. Não colocar campanha ou título de conteúdo no nome final. A numeração precisa de evidência ou autorização; não atribuir modelos por mera ordem de camadas.
+Em páginas dedicadas chamadas E-mail, EMM ou equivalente inequívoco, aplicar a exceção de e-mails das seções 8 e 10 do organizador: sections nativas de modelos diretamente na página, lado a lado e alinhadas pelo topo, com gap de 200 px; e-mails diretamente nessas sections, com padding de 200 px nos quatro lados e gap horizontal de 100 px entre frames. Usar o estilo de Modelo (#262626, traçado branco de 1 px a 10%, raio 200 px). Não criar níveis de editoria/categoria nem sections intermediárias de tipo/formato. Esses valores organizam o board; não alteram o padding do corpo ou das seções internas do e-mail.
+
+Preservar a âncora, os agrupamentos e a numeração comprovados. Em uma section de modelo único, o campo central reproduz exatamente seu nome. Quando a referência já reunir modelos explicitamente identificados, como `Modelo 3 e 4 - Institucional`, preservar esse agrupamento e usar o modelo individual em cada frame, conforme a exceção da seção 4 do organizador.
+
+Em páginas mistas ou de outros materiais, seguir a hierarquia e os espaçamentos gerais do organizador; a presença de um e-mail não ativa a exceção para a página inteira. Em todos os casos, organizar apenas o conjunto autorizado e manter originais e versões anteriores preservados. Não colocar campanha ou título de conteúdo no nome final. A numeração precisa de evidência ou autorização; não atribuir modelos por mera ordem de camadas.
 
 ## 10. Verificação final independente
 
@@ -145,11 +160,14 @@ Fazer a segunda etapa de qualidade depois da reconstrução. Conferir todos os e
 - textos Fill/Hug e sem cortes;
 - zero “Ignorar layout automático” fora da composição gráfica;
 - zero máscaras em todos os templates;
-- padding e gaps inteiros, sem escalas acidentais;
+- dimensões e posições de todos os objetos, padding, gaps e demais medidas de layout inteiros, sem escalas acidentais ou frações não resolvidas;
+- todos os textos e trechos com fontes inteiras, entrelinha explícita em 100%, 110%, 120%… e tracking com até uma casa decimal;
+- varredura dos formatos e correção dos microdesvios comprovados dentro da tolerância, com registro antes/depois, preservando alturas Hug;
 - ausência de caixas vazias, duplicatas, sobras e colisões;
 - componentes corretos e compartilhados;
 - conteúdo e destaques preservados;
-- originais e versões de referência intactos.
+- originais e versões de referência intactos;
+- organização externa conforme o tipo da página: em E-mail/EMM, somente sections de modelos lado a lado, sem níveis de editoria/formato, padding 200 px, gap 100 px entre e-mails e 200 px entre sections; identidades individuais preservadas nos agrupamentos explícitos.
 
 **Comportamento**
 - ampliar texto representativo em uma cópia de cada modelo e verificar que as próximas seções e o footer se deslocam;

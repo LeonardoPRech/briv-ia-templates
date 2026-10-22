@@ -22,6 +22,8 @@ Para e-mails especificamente, indicar o modelo seguido do tipo, tanto na section
 - Section: `Modelo 5 - Vacinas`.
 - Frame: `E-mail / Modelo 5 - Vacinas / 600x1800`.
 
+Em páginas de e-mail, usar a hierarquia simplificada da seção 8 e os espaçamentos próprios da seção 10; essas regras prevalecem sobre a hierarquia e os espaçamentos gerais. Uma section que já reúna vários modelos explicitamente identificados segue a exceção de nomenclatura da seção 4.
+
 Usar o tipo comprovado no arquivo ou indicado pelo usuário. A numeração continua dependendo de evidência ou autorização; não inventar modelos. Essa regra é específica de e-mails e não altera a nomenclatura dos demais materiais.
 
 Para carrosséis ou outras sequências de telas identificadas:
@@ -46,7 +48,8 @@ Preservar a identidade visual das artes, a associação entre adaptações e a s
 Registrar:
 
 - ID, nome original, tipo, ancestralidade, posição e dimensões dos assets.
-- Editoria ou categoria organizacional existente e section de modelo à qual cada arte pertence.
+- Nome e finalidade da página, para escolher entre a regra de e-mails e a regra geral.
+- Editoria ou categoria organizacional existente e section de modelo à qual cada arte pertence; em e-mails, registrar também cada modelo individual quando a section reunir mais de um.
 - Tipo de peça, formato e número de tela, quando aplicável.
 - Título original da peça ou conjunto, quando identificável, apenas como informação auxiliar para distinguir conjuntos.
 - Legendas e materiais auxiliares associados.
@@ -84,7 +87,7 @@ Não mesclar assets diferentes somente porque terão nomes semelhantes após a n
 
 ## 4. Identificar o modelo pela hierarquia
 
-O campo central do nome deve reproduzir exatamente o nome da section de modelo ancestral do frame.
+O campo central do nome deve reproduzir exatamente o nome da section de modelo ancestral do frame, salvo a exceção de sections de e-mail com vários modelos explicitamente identificados, descrita abaixo.
 
 Exemplo:
 
@@ -118,6 +121,17 @@ Se não existir uma section de modelo identificável:
 - Aplicar as correções seguras aos demais conjuntos.
 
 Se houver sections de modelo aninhadas ou contraditórias, sinalizar a ambiguidade antes de renomear os itens afetados.
+
+### Exceção: vários modelos em uma section de e-mail
+
+Na hierarquia simplificada de páginas de e-mail, preservar agrupamentos explícitos já definidos, como `Modelo 3 e 4 - Institucional` ou `Modelo 7, 8 e 9 - Vacinas`. Não dividir esses agrupamentos nem reunir modelos apenas por semelhança visual.
+
+Nesses casos, a section lista os modelos do conjunto e o tipo comum; cada frame mantém seu modelo individual comprovado:
+
+- Section: `Modelo 3 e 4 - Institucional`.
+- Frames: `E-mail / Modelo 3 - Institucional / 600x1125` e `E-mail / Modelo 4 - Institucional / 600x1033`.
+
+O número individual deve pertencer à lista da section e o tipo deve coincidir. Não copiar o nome plural da section para todos os frames, não renumerar os modelos e não escolher um número pela posição. Usar o mapeamento confirmado do inventário; se não houver evidência suficiente, manter a nomenclatura afetada pendente e continuar os conjuntos seguros. Em sections com um único modelo, permanece a igualdade exata do campo central com o nome da section.
 
 ## 5. Nome final dos frames
 
@@ -188,7 +202,34 @@ Se houver divergência de 1 px em relação ao formato nominal, informar; não a
 
 ## 8. Hierarquia
 
-Usar sections nativas, não frames simulando sections:
+Usar sections nativas, não frames simulando sections. Escolher a regra pela página antes de organizar.
+
+### Páginas de e-mail: somente sections de modelos
+
+Aplicar esta exceção somente quando a página for dedicada a e-mails e identificada como `E-mail`, `E-mails`, `Email`, `Emails`, `EMM`, `E-mail marketing` ou denominação equivalente inequívoca. Desconsiderar caixa, espaços, hífens e prefixos decorativos de navegação, como em `↳ E-mail`. Um nome genérico como “CRM” ou a presença isolada de um e-mail em uma página mista não basta.
+
+Estrutura externa:
+
+```text
+Página E-mail / EMM
+  Modelo 1 - Datas (section)
+    E-mail / Modelo 1 - Datas / 600x1472
+  Modelo 2 - Atendimento Domiciliar (section)
+    E-mail / Modelo 2 - Atendimento Domiciliar / 600x1154
+  Modelo 3 e 4 - Institucional (section existente com modelos identificados)
+    E-mail / Modelo 3 - Institucional / 600x1125
+    E-mail / Modelo 4 - Institucional / 600x1033
+```
+
+As sections ficam diretamente na página, lado a lado, com os e-mails como filhos diretos. Não criar uma section superior de editoria/categoria nem uma section intermediária de tipo/formato “E-mail”, “EMM” ou de dimensões. O tipo comprovado fica no nome da section de modelo, sem outro nível organizacional. Isso se refere às sections externas do board; preservar integralmente os frames e seções de conteúdo internos de cada e-mail.
+
+No conjunto autorizado, se existirem esses níveis redundantes, transferir as unidades para a hierarquia simples e remover somente as sections organizacionais esvaziadas. Preservar originais, materiais auxiliares e itens fora do escopo; não excluir containers com conteúdo restante. Não reorganizar a página inteira quando o pedido se limitar a alguns modelos.
+
+Preservar nomes, números, associações e agrupamentos explícitos existentes. Criar uma section ausente somente com identificação comprovada. Para uma section que reúna vários modelos, seguir a exceção da seção 4.
+
+### Demais páginas: hierarquia geral
+
+Em páginas sociais, de banners, mistas ou de outros materiais, manter a hierarquia geral abaixo. A exceção de e-mails não se estende a elas.
 
 Editoria N - Nome da editoria (ou categoria organizacional existente)
   Modelo N
@@ -197,7 +238,7 @@ Editoria N - Nome da editoria (ou categoria organizacional existente)
 
 Regras:
 
-- Preservar nomes e números de editorias, categorias e modelos já confiáveis. Para banners, e-mails ou outros materiais, usar a categoria ou agrupamento real do arquivo; não inventar uma editoria social. As regras de “Editoria” abaixo se aplicam ao nível organizacional superior equivalente, quando existir.
+- Preservar nomes e números de editorias, categorias e modelos já confiáveis. Para banners, e-mails em páginas mistas ou outros materiais, usar a categoria ou agrupamento real do arquivo; não inventar uma editoria social. As regras de “Editoria” abaixo se aplicam ao nível organizacional superior equivalente, quando existir.
 - Permitir qualquer quantidade de modelos; não limitar a dois.
 - Criar níveis ausentes somente quando o agrupamento e a identificação estiverem claros.
 - Não inventar editoria ou modelo com base apenas em semelhança visual.
@@ -207,7 +248,7 @@ Regras:
 
 ## 9. Estilos das sections
 
-Aplicar somente às sections organizacionais.
+Aplicar somente às sections organizacionais. Nas páginas de e-mail, aplicar somente o estilo de Modelo às sections simplificadas, inclusive às que reúnem vários modelos. Não criar os níveis Editoria ou Formato apenas para aplicar seus estilos.
 
 ### Editoria
 
@@ -237,7 +278,22 @@ Todas as medidas são entre limites dos containers, em px.
 
 Sections não têm padding automático: representar o padding pela posição dos filhos e pelo tamanho da section, sem convertê-las em frames.
 
-### Editorias ou categorias equivalentes
+### Páginas de e-mail: espaçamento específico
+
+Esta regra substitui, nas páginas de e-mail definidas na seção 8, os paddings e gaps gerais abaixo.
+
+- Sections de modelos em uma única linha horizontal, alinhadas pelo topo.
+- Gap de **200 px** entre os limites de sections consecutivas.
+- Padding de **200 px nos quatro lados** de cada section de modelo.
+- E-mails diretamente dentro da section, em linha horizontal, alinhados pelo topo, com gap de **100 px** entre frames.
+- Preservar a posição da primeira section do conjunto autorizado como âncora e a ordem espacial coerente já existente. Não forçar a origem (0,0) nem inferir numeração pela posição.
+- Ajustar cada section ao conteúdo mais o padding. Para uma linha de `n` e-mails, largura = soma das larguras + `100 × (n − 1) + 400`; altura = maior altura dos e-mails + `400`. A próxima section começa em `x anterior + largura anterior + 200`, no mesmo y.
+- Um e-mail de 600x1472 produz uma section de 1000x1872. Dois e-mails de 600 px produzem uma section de 1700 px de largura; três, 2400 px. São exemplos de cálculo, sem redimensionar os e-mails.
+- Se houver legenda ou auxiliar já associado dentro do escopo, preservá-lo como unidade e considerar seus limites no ajuste; não criar legendas, reservas fictícias ou novas sections de formato. Relatar quando isso exigir dimensões diferentes dos exemplos.
+
+Referência medida: [página E-mail da LAFE](https://www.figma.com/design/1tiTJjRhMNK5wgtaZVyRDR?node-id=2004-3891). Os valores necessários estão registrados aqui; execuções futuras não dependem de acesso ao arquivo de referência.
+
+### Regra geral: editorias ou categorias equivalentes
 
 - Organizar verticalmente, alinhadas à esquerda.
 - Gap de 2000 entre editorias dentro do escopo autorizado.
@@ -247,14 +303,14 @@ Sections não têm padding automático: representar o padding pela posição dos
 - Preservar largura comum existente e área livre à direita.
 - Expandir se necessário, sem compactar automaticamente essa reserva.
 
-### Modelos
+### Regra geral: modelos
 
 - Padding de 100 ao redor das sections de formato.
 - Em conjuntos sociais, formato de Feed/Carrossel acima da adaptação Story/Story Carrossel. Para Banner, E-mail ou outros tipos, preservar a ordem coerente e as relações existentes; não criar adaptações sociais ausentes.
 - Gap vertical padrão de 200 entre sections de formato.
 - A referência também contém gaps de 300: tratá-los como variação observada, não como obrigação de replicar.
 
-### Sections de formato
+### Regra geral: sections de formato
 
 - Padding de 100 nos quatro lados.
 - Artes em linha horizontal, alinhadas pelo topo.
@@ -268,7 +324,7 @@ Sections não têm padding automático: representar o padding pela posição dos
 
 Na referência original, carrosséis tinham predominantemente gap de 100, e 150 era comum entre arte e legenda.
 
-O padrão operacional aprovado desta skill é:
+Nas demais páginas, o padrão operacional aprovado é o seguinte; nas páginas de e-mail prevalecem 200 px de padding, 100 px entre e-mails e 200 px entre sections:
 
 - 150 entre frames de artes.
 - 150 entre a última arte e a legenda.
@@ -276,7 +332,7 @@ O padrão operacional aprovado desta skill é:
 
 ### Pixels inteiros na organização externa
 
-Normalizar x/y das unidades movimentadas e posições, dimensões, paddings e gaps das sections organizacionais ao pixel inteiro mais próximo quando viável. Nunca aplicar esse arredondamento às dimensões, escala ou propriedades internas das artes ou legendas. Preservar a primeira editoria/categoria como âncora, inclusive se sua posição original tiver fração. Se o tamanho fracionário de uma arte impedir simultaneamente gap exato e bordas em pixels inteiros, preservar a arte, priorizar os gaps e registrar a exceção de posição; não alterar a arte para resolver a grade.
+Normalizar x/y das unidades movimentadas e posições, dimensões, paddings e gaps das sections organizacionais ao pixel inteiro mais próximo quando viável. Nunca aplicar esse arredondamento às dimensões, escala ou propriedades internas das artes ou legendas. Preservar a primeira editoria/categoria ou, na página de e-mail, a primeira section de modelo como âncora, inclusive se sua posição original tiver fração. Se o tamanho fracionário de uma arte impedir simultaneamente gap exato e bordas em pixels inteiros, preservar a arte, priorizar os gaps e registrar a exceção de posição; não alterar a arte para resolver a grade.
 
 ## 11. Execução segura
 
@@ -284,7 +340,7 @@ Normalizar x/y das unidades movimentadas e posições, dimensões, paddings e ga
 - Identificar previamente ambiguidades e colisões dentro de cada conjunto.
 - Carregar as fontes necessárias antes de mover containers com texto.
 - Se alguma fonte impedir a operação, não substituí-la silenciosamente.
-- Trabalhar de dentro para fora: artes e legendas, formato, modelo, editoria e, por último, distribuição das editorias.
+- Trabalhar de dentro para fora: artes e legendas, formato, modelo, editoria e, por último, distribuição das editorias. Na página de e-mail, usar somente e-mails, sections de modelos e distribuição horizontal dessas sections; não executar os níveis de formato ou editoria.
 - Mover cada arte e legenda como unidade, preservando a geometria relativa dos descendentes, dimensões, escala, rotação e ordem de sobreposição interna. Ao trocar de section, preservar primeiro a transformação visual e depois aplicar somente a translação planejada. Não inserir a arte em container que recorte, redimensione ou altere seu resultado visual.
 - Renomear os frames com base na hierarquia final confirmada.
 - Não mover conteúdo fora do escopo para abrir espaço.
@@ -296,14 +352,16 @@ Normalizar x/y das unidades movimentadas e posições, dimensões, paddings e ga
 Confirmar:
 
 - Mesma quantidade de artes, sem perdas ou duplicações.
-- Campo central de cada nome idêntico ao nome da section de modelo à qual pertence.
+- Campo central de cada nome idêntico ao nome da section de modelo à qual pertence; para sections de e-mail com vários modelos, conferir o modelo individual comprovado, sua presença na lista da section e o tipo comum, conforme a seção 4.
 - Ausência do título da peça ou conjunto no nome final.
 - Tipo e dimensão consistentes com o asset.
 - Sequências coerentes, sem trocas silenciosas de ordem.
 - Carrosséis e outras sequências distintas preservados como conjuntos distintos.
 - Artes e legendas inalteradas internamente, inclusive conteúdo, nomes dos descendentes, dimensões, transformações relativas, estilos e fontes. Comparar renderizações antes/depois na mesma escala e compensando apenas a translação externa; conferir propriedades além da aparência.
 - Estilos corretos por nível.
-- Paddings, gaps e limites sem colisões.
+- Paddings, gaps e limites sem colisões, usando a regra correta da página.
+- Em páginas de e-mail: sections diretamente na página, e-mails diretamente nas sections de modelos, sem níveis redundantes de editoria ou formato; topo alinhado, padding 200, gap 100 entre e-mails e gap 200 entre sections. Modelos agrupados explicitamente preservam suas identidades individuais.
+- Em outras páginas: hierarquia, estilos e espaçamentos gerais preservados.
 - Nenhuma mudança fora do escopo.
 - Executar novamente a skill não deve produzir alterações adicionais em conjuntos já conformes.
 

@@ -7,7 +7,7 @@ description: "Use ao analisar ou otimizar templates do Briv.IA no Figma, especia
 
 ## 0. Contexto do plugin e base de conhecimento
 
-Este plugin possui três skills com escopos distintos. Usar esta para otimizar a estrutura interna das peças e seus assets reutilizáveis. Para converter e-mails/EMM em auto-layout real preservando as medidas e a tipografia atuais, priorizar o [Otimizador de EMM](../otimizador-de-emm/SKILL.md). Um pedido desse fluxo especializado não ativa automaticamente a normalização tipográfica e geométrica desta skill geral. Para organizar a página/board, nomes dos frames principais, posição das artes e sections, usar [Organizador de assets](../organizador-de-assets-briv-ia/SKILL.md), que preserva integralmente o interior das artes. Um pedido de organização da página não ativa a otimização das peças. Se o usuário pedir ambos, aplicar cada skill ao seu escopo; concluir a otimização antes da organização final. A mera presença de uma arte no contexto não autoriza sua edição.
+Este plugin possui três skills com escopos distintos. Usar esta para otimizar a estrutura interna das peças e seus assets reutilizáveis. Para reconstruir e-mails/EMM em auto-layout real, priorizar o [Otimizador de EMM](../otimizador-de-emm/SKILL.md). As duas skills exigem a normalização pixel perfect da seção 13.1 em todo o seu escopo, inclusive tipografia, dimensões e posições; no e-mail, a aplicação gráfica completa desta skill geral continua limitada ao banner. Para organizar a página/board, nomes dos frames principais, posição das artes e sections, usar [Organizador de assets](../organizador-de-assets-briv-ia/SKILL.md), que preserva integralmente o interior das artes. Um pedido de organização da página não ativa a otimização das peças. Se o usuário pedir ambos, aplicar cada skill ao seu escopo; concluir a otimização antes da organização final. A mera presença de uma arte no contexto não autoriza sua edição.
 
 Antes de executar, ler esta skill integralmente. Usar a integração Figma disponível e seguir as instruções operacionais das ferramentas e skills Figma do ambiente quando aplicáveis. O plugin não cria um servidor próprio nem substitui permissões de acesso ao arquivo.
 
@@ -135,7 +135,7 @@ Antes de editar, registrar:
 
 - identificação estável de cada peça;
 - hierarquia, modelo, formato e sequência;
-- dimensões reais;
+- dimensões reais e formato nominal pretendido, com origem da evidência e diferenças em cada eixo;
 - posição e transformação;
 - ordem de sobreposição;
 - visibilidade e bloqueios;
@@ -261,6 +261,8 @@ Evitar os dois extremos:
 Agrupar ao máximo significa representar unidades úteis, não aninhar ao máximo. Cada grupo ou frame deve corresponder a uma unidade que será substituída, alinhada, movimentada ou dimensionada em conjunto. Descrever essa função quando ela não for evidente.
 
 Não criar um wrapper por camada nem wrappers em cascata sem função. O número de frames pode aumentar quando isso expressar relações reais e melhorar a edição. Evitar tanto camadas soltas sem relação quanto aninhamentos redundantes; não usar contagem de camadas como meta de qualidade.
+
+Em listas e checkboxes, usar a estrutura mínima da seção 14: uma lista vertical com linhas horizontais, cada linha contendo diretamente o ícone à esquerda e o texto à direita. Não empilhar wrappers “Fluxo”, “Texto” e “Marcador” quando só repetem posição, largura ou espaço entre itens. Aproveitar o container existente que já desempenha a função; remover redundâncias apenas na cópia autorizada, preservando as propriedades visuais úteis.
 
 ## 9. Fundos e preenchimentos nativos
 
@@ -452,17 +454,17 @@ Textos maiores podem exceder o espaço disponível mesmo em estruturas bem const
 
 Ao dividir parágrafos ou listas, registrar o texto de origem e conferir, após a separação, conteúdo integral, ordem, pontuação, destaques e quebras intencionais. Comparar os trechos e estilos, além de sua aparência. A quantidade de camadas pode aumentar; nenhuma informação pode desaparecer, duplicar ou mudar de sentido. Só normalizar quebras puramente visuais após distingui-las das quebras intencionais, documentando a transformação.
 
-## 13.1. Normalização tipográfica e medidas em pixels inteiros
+## 13.1. Pixel perfect: tipografia, posições, dimensões e formato nominal
 
-Aplicar a todas as caixas de texto editáveis e a todos os trechos com formatação própria no escopo da otimização, inclusive textos de uma única linha. Não aplicar no modo somente análise; nesse modo, registrar os ajustes necessários. Na primeira otimização, editar as cópias; na continuação, as cópias existentes. Não executar esta etapa em pedidos exclusivos ao organizador de assets.
+Aplicar obrigatoriamente a todos os objetos e descendentes no escopo da otimização, incluindo todas as caixas de texto editáveis e todos os trechos com formatação própria, inclusive textos de uma única linha. Dimensões, posições, tamanhos de fonte e medidas de layout devem terminar sem casas decimais. A única medida tipográfica/de layout autorizada a ter decimal é o espaçamento entre letras, limitado a uma casa. Não tratar “pixel perfect” como recomendação opcional. Não aplicar no modo somente análise; nesse modo, registrar os ajustes necessários. Na primeira otimização, editar as cópias; na continuação, as cópias existentes. Não executar esta etapa em pedidos exclusivos ao organizador de assets.
 
 ### Tipografia
 
-Preservar família tipográfica, estilo/peso, eixos da fonte variável, destaques e demais características propostas. Não substituir fontes para facilitar arredondamentos. Os ajustes tipográficos deste procedimento se limitam a tamanho de fonte, altura de linha e espaçamento entre letras; não compensar diferenças trocando família ou peso. Preservar conteúdo, quebras intencionais, alinhamento e espaçamento de parágrafo.
+Preservar família tipográfica, estilo/peso, eixos da fonte variável, destaques e demais características propostas. Não substituir fontes para facilitar arredondamentos. Os ajustes tipográficos deste procedimento abrangem tamanho de fonte, altura de linha, espaçamento entre letras e arredondamento do espaçamento de parágrafo em px; não compensar diferenças trocando família ou peso. Preservar conteúdo, quebras intencionais e alinhamento.
 
 1. **Tamanho de fonte:** arredondar ao inteiro mais próximo, sem casas decimais. Exemplos: 36,4 → 36; 36,8 → 37; 36,5 → 37. Não truncar. Se o arredondamento produzir um tamanho inválido, registrar a exceção em vez de apagar ou colapsar o texto.
-2. **Altura de linha:** gravar explicitamente em porcentagem, no múltiplo de 10 pontos percentuais mais próximo: 100%, 110%, 120%, 130%, 140% e assim por diante, sem limitar o valor a 140%. Exemplos: 113% → 110%; 116% → 120%; 115% → 120%; 153% → 150%. Não confundir um incremento de 10 pontos percentuais com multiplicar o valor por 1,1.
-3. **Converter antes de arredondar:** se a entrelinha original estiver em px, calcular a proporção usando o tamanho de fonte original do trecho: porcentagem = altura de linha em px ÷ tamanho de fonte original × 100. Só depois escolher o múltiplo de 10 e gravá-lo junto do tamanho inteiro final. Exemplo: fonte 36,4 px e entrelinha 43,68 px → proporção 120% → fonte 36 px e entrelinha 120%.
+2. **Altura de linha:** em todas as caixas e trechos, gravar explicitamente em porcentagem: 100%, 110%, 120%, 130%, 140%, 150% e assim por diante, sem teto. Usar múltiplos inteiros de 10, com mínimo de 100%. Não deixar entrelinha em px, AUTO ou percentual fracionário. Não confundir um incremento de 10 pontos percentuais com multiplicar o valor por 1,1.
+3. **Converter preservando a altura original mais próxima:** antes de editar, guardar o tamanho de fonte original F0 e a altura efetiva original H0 em px. Se a entrelinha original for percentual P0, H0 = F0 × P0 ÷ 100; se for px, usar esse valor diretamente. Arredondar a fonte para F1 inteiro e calcular P = máximo(100, 10 × arredondar(H0 ÷ F1 × 10)). O arredondamento escolhe o mais próximo e, no empate, o maior percentual. Gravar F1 e P%: entre os percentuais permitidos, esse P produz a altura em px mais próxima de H0 com a fonte final. Exemplo: F0 = 20 px, H0 = 23 px → F1 = 20 px, razão 115% → 120%. F0 = 36,4 px e H0 = 43,68 px → F1 = 36 px, razão aproximada 121,33% → 120%. Para fonte já inteira, 113% → 110%, 116% → 120% e 153% → 150%. Não arredondar H0 para inteiro antes de converter. **Em listas cuja entrelinha inflada esteja substituindo o espaço entre itens, aplicar primeiro a seção 14:** usar a entrelinha compacta da referência aprovada (em geral 120% ou 130%) e transferir a separação entre itens para o gap vertical. Nesses casos, não escolher o percentual mais próximo de uma entrelinha artificial de 220%, por exemplo; registrar o ajuste estrutural intencional.
 4. **Entrelinha automática:** resolver a altura efetiva com as métricas da fonte e/ou medição de linhas renderizadas pela integração disponível, convertê-la em proporção e gravar o percentual normalizado. Não usar a altura total da caixa de texto como se fosse a entrelinha. Se não for possível resolver AUTO com segurança, registrar a caixa e a limitação; não inventar 100%, não substituir fonte nem declarar a normalização concluída.
 5. **Espaçamento entre letras:** preservar a unidade original (px ou %) e arredondar ao mais próximo com no máximo uma casa decimal, inclusive valores negativos; manter valores já conformes. Exemplos: 0,24 → 0,2; 0,26 → 0,3; -1,26 → -1,3. Empates exatos são arredondados para longe de zero. Não arredondar o tracking obrigatoriamente para inteiro.
 
@@ -470,49 +472,91 @@ Em textos mistos, ler e editar por trecho/range; não aplicar um único tamanho,
 
 ### Geometria geral
 
-Buscar pixels inteiros nas posições x/y, larguras, alturas, paddings, gaps, espaçamentos e demais medidas de layout em px, em textos, frames, grupos, imagens, formas e containers do escopo. Arredondar cada medida ao inteiro mais próximo, sem impor uma grade maior; por exemplo, 150,4 → 150 e 150,8 → 151. Para medidas negativas, usar a mesma regra de proximidade e desempate para longe de zero. Normalizar raios e espessuras em px quando isso conservar a aparência. Não arredondar ângulos, proporções, opacidades ou coordenadas internas de curvas como se fossem medidas de layout em px. A exceção de tracking com uma casa decimal continua válida.
+Exigir pixels inteiros nas posições x/y, larguras, alturas, paddings, gaps, espaçamentos de parágrafo, raios, espessuras e demais medidas de layout em px, em textos, frames, grupos, imagens, formas, instâncias e containers do escopo. Arredondar cada medida ao inteiro mais próximo, sem impor uma grade maior; por exemplo, 150,4 → 150 e 150,8 → 151. Para medidas negativas, usar a mesma regra de proximidade e desempate para longe de zero. Normalizar também raios e espessuras em px. Não arredondar ângulos, proporções, opacidades ou coordenadas internas de curvas como se fossem medidas de layout em px. A exceção de tracking com uma casa decimal continua válida.
 
-Trabalhar nas propriedades que dirigem o layout, de dentro para fora. Em auto-layouts, normalizar dimensões editáveis, gaps e paddings e deixar o fluxo recalcular os filhos. Conferir também o resultado; não desfazer Hug/Fill, proporções, alinhamentos ou rotações somente para forçar um valor calculado a inteiro. Preservar proporção de imagens, recorte, curvas, detalhes de marca e geometria vinculada; registrar as exceções em que não for possível obter inteiros sem distorção. Não redimensionar indiscriminadamente todos os elementos por escala.
+Trabalhar nas propriedades que dirigem o layout, de dentro para fora. Em auto-layouts, normalizar dimensões editáveis, gaps e paddings e deixar o fluxo recalcular os filhos; reler todas as medidas finais, inclusive as herdadas de Fill/Hug. Corrigir meios pixels de centralização por alinhamento, paridade das dimensões e distribuição inteira do espaço; não aceitar 0,5 px silenciosamente.
 
-Medidas finais nominais das peças devem permanecer reconhecíveis. Arredondar pequenas frações do frame principal somente quando preservar a composição e não violar formato explicitamente exigido. Atualizar nomes que contenham dimensões apenas com base no resultado real. O objetivo é remover frações desnecessárias, não alterar o formato ou a escala da criação.
+A regra abrange as medidas de layout dos objetos, não os coeficientes matemáticos de matrizes de transformação, pontos internos de curvas, proporções, ângulos ou opacidades. Não arredondar esses dados como se fossem medidas em px. Preservar proporção, recorte, rotações intencionais e detalhes de marcas e pessoas. Não redimensionar indiscriminadamente todos os elementos por escala.
+
+Entrelinha percentual pode produzir altura calculada fracionária. Manter o percentual exigido e resolver as medidas do container pelas propriedades de layout, sem trocar para entrelinha em px. Não desligar Hug/Fill, criar alturas fixas com corte, espaçadores artificiais ou “Ignorar layout automático” para esconder frações. Se uma restrição da ferramenta impedir simultaneamente fluxo correto, fidelidade e medidas inteiras, registrar o ID, a propriedade, o valor e o impedimento como pendência; não declarar o objeto ou o conjunto integralmente pixel perfect enquanto isso permanecer.
+
+### Varredura de microdesvios no formato das artes
+
+Executar uma rodada específica em todos os frames principais do conjunto, antes da normalização e novamente ao final. Comparar largura e altura reais com o formato nominal indicado no nome do frame, no padrão do cliente ou na especificação aprovada. Distinguir dimensões de números de modelo, versão ou tela. O nome `1080x1350`, quando corresponde ao formato pretendido da arte, é evidência para corrigir um desvio mínimo; não apenas renomear o frame como `1081x1351` para ocultar o problema.
+
+Sem tolerância explícita do usuário, adotar um limite conservador de **até 3 px de diferença absoluta em cada eixo, limitado também a 0,5% da dimensão nominal de cada eixo**. O limite vale para excesso ou falta e para dimensões fracionárias. Ambos os eixos devem estar dentro da tolerância; se um a exceder, não fazer correção parcial automática. Não usar esta regra para converter formatos ou corrigir divergências grandes.
+
+Exemplos:
+
+- Frame nomeado `1080x1350`, real `1081x1351` → corrigir para **1080x1350**, reduzindo 1 px em cada eixo.
+- Mesmo formato, real `1079x1348` → corrigir para **1080x1350**.
+- Mesmo formato, real `1088x1358` → registrar divergência fora da tolerância, sem redimensionar automaticamente.
+
+Corrigir o tamanho do frame na cópia de trabalho, preservando posição âncora e sem escalar todo o conteúdo. Rever constraints, Fill, fundos, recortes, bordas e alinhamentos para acomodar o ajuste mínimo; verificar que nada ficou cortado ou descoberto e repetir a varredura de inteiros após o fluxo recalcular. Não deformar pessoas, fotos ou marcas.
+
+Só usar um tamanho nominal confiável. Se fontes de formato se contradisserem, manter os itens afetados pendentes. Na falta de formato nominal, normalizar as frações das medidas, sem inventar outro formato.
+
+Em e-mails, aplicar à largura padrão do cliente e às artes de tamanho controlado, como o banner. A altura Hug total e demais alturas dirigidas por conteúdo não são formatos fixos: não reduzi-las para coincidir com uma altura desatualizada no nome. Recalcular e atualizar a dimensão descritiva no nome depois do layout final. Essa distinção não dispensa a auditoria de medidas inteiras.
+
+Registrar ID, nome, origem do formato pretendido, largura/altura nominal e real antes/depois, diferença em px e %, ação e resultado visual. Ao concluir, toda microdivergência comprovada e dentro da tolerância deve estar corrigida ou explicitamente pendente.
 
 ### Aplicação e conferência
 
-Registrar valores anteriores e finais, unidade, ID da caixa/trecho ou elemento e exceções. Comparar com o estado anterior e a referência aprovada após a normalização. Os pequenos ajustes numéricos acima são intencionais; conferir que não provoquem palavras cortadas, quebras inesperadas, colisões, perda de destaques ou desalinhamentos. Corrigir a estrutura e as medidas permitidas sem trocar a tipografia. Quando a fidelidade ou uma restrição real impedir o ajuste, manter somente a exceção justificada e relatá-la. Uma segunda execução deve manter os valores já normalizados.
+Registrar valores anteriores e finais, unidade, ID da caixa/trecho ou elemento e exceções. Comparar com o estado anterior e a referência aprovada após a normalização. Os pequenos ajustes numéricos acima são intencionais; conferir que não provoquem palavras cortadas, quebras inesperadas, colisões, perda de destaques ou desalinhamentos. Corrigir a estrutura e as medidas permitidas sem trocar a tipografia. Executar a leitura final depois de todas as alterações, inclusive organização externa e mudanças em componentes. Qualquer medida de layout fracionária, fonte não inteira, tracking com mais de uma casa, entrelinha fora do padrão ou microdesvio de formato ainda não resolvido é pendência identificada; não tratá-la como conformidade nem declarar a normalização integral concluída. Uma segunda execução deve manter os valores já normalizados.
 
-## 14. Listas e marcadores
+## 14. Listas, bullets e checkboxes: estrutura mínima e limites reais
 
-Estrutura preferida:
+Usar a mesma solução para bullets, checks, benefícios e relações equivalentes. A lista é um auto-layout vertical; cada item é um único auto-layout horizontal, com o ícone à esquerda e o texto à direita, como filhos diretos:
 
-- Lista: auto-layout vertical
-  - Item 01: auto-layout horizontal
-    - Marcador
-    - Texto
-  - Item 02: auto-layout horizontal
-    - Marcador
-    - Texto
+```text
+Lista — vertical, largura controlada/Fill, altura Hug, gap entre itens
+  Item 01 — horizontal, largura Fill, altura Hug
+    Ícone — dimensões fixas
+    Texto — largura Fill, altura Hug
+  Item 02 — horizontal, largura Fill, altura Hug
+    Ícone — dimensões fixas
+    Texto — largura Fill, altura Hug
+```
 
-Cada marcador deve acompanhar seu item, inclusive quando o texto quebrar em várias linhas.
+Não acrescentar um frame “Item / Fluxo” ao redor de cada linha, um frame “Texto” contendo somente a descrição ou um frame “Marcador / Fluxo” apenas para deslocar o check. Não usar padding por item, gaps negativos, caixas vazias ou alturas artificiais para reproduzir coordenadas antigas ou espaçamento entre bullets. Um componente de ícone pode manter sua estrutura interna necessária; uma exceção de container deve ter função concreta, como fundo, recorte, efeito ou conteúdo realmente composto, com justificativa.
 
-Identificar o início de cada item pelo conteúdo e pela composição.
+### Largura e crescimento
 
-Não dividir mecanicamente toda quebra de linha:
+- Definir a largura disponível da lista dentro da região de conteúdo da arte. Usar largura controlada nesse nível ou Fill quando houver pai com largura definida; não usar Hug horizontal na cadeia inteira.
+- Cada linha deve ocupar a largura disponível (Fill) e crescer em altura (Hug).
+- O ícone tem tamanho fixo e participa do fluxo; o texto recebe o espaço restante com **largura Fill, altura Hug e quebra natural**. Vale para todos os itens, inclusive os que hoje têm uma única linha.
+- Configurar uma largura efetivamente limitada e redimensionamento vertical por conteúdo no texto (por exemplo, `textAutoResize = HEIGHT`). Não deixar `WIDTH_AND_HEIGHT`/Hug horizontal crescer além do container. Anexar ao pai de auto-layout antes de configurar Fill/Hug e reler os modos salvos.
+- Conferir a conta por linha: largura disponível do texto = largura da linha − paddings laterais − largura do ícone − gap horizontal. A soma deve caber na linha. Não basta o texto dizer Fill se o próprio container ou um wrapper ainda impuser largura incompatível.
+- O container deve comportar o texto: a altura da linha acompanha o maior filho, a lista acompanha as linhas e seus gaps e o suporte/conteúdo seguinte acompanha a lista. Não fixar altura para cortar, ocultar overflow ou deixar texto fora dos limites.
+- Se a região disponível for insuficiente, ajustar o container e sua relação com os vizinhos dentro da composição autorizada, preservando margens e legibilidade. Não reduzir fonte, esticar a arte, invadir outra região ou esconder texto apenas para fazer caber; se não houver solução fiel, registrar a pendência.
+- Conferir alinhamento do ícone com a primeira linha ou com o centro, conforme a referência aprovada. Em itens multilinha, não aplicar centralização por hábito nem criar wrappers de padding para simular alinhamento.
 
-- uma quebra pode continuar o mesmo item;
-- um item pode ocupar várias linhas;
-- um parágrafo pode ter estilos mistos.
+### Entrelinha não é espaço entre itens
 
-Ao separar um texto em itens:
+A entrelinha organiza as linhas **dentro do mesmo item**; o gap do auto-layout vertical organiza o espaço **entre itens diferentes**.
 
-- preservar conteúdo e pontuação;
-- preservar estilos dos trechos;
-- conferir a ordem;
-- conferir entrelinha e espaçamento;
-- manter alinhamento adequado ao primeiro trecho ou ao centro, conforme a referência.
+Quando a importação usar entrelinha excessiva para separar bullets, reconstruir os itens e adotar entrelinha compacta em **120% ou 130%**, priorizando o valor da referência aprovada. Sem referência específica, começar em 120% e avaliar 130% pela legibilidade. Outros percentuais só se justificados por uma referência tipográfica explícita; continuam sujeitos aos múltiplos de 10 da seção 13.1. Não conservar uma entrelinha inflada só porque o arredondamento daria um valor próximo.
 
-Validar que a união ordenada do conteúdo dos itens corresponde ao original, incluindo pontuação, destaques e quebras intencionais. Conferir separadamente a função dos marcadores para não omitir nem duplicar informação. Registrar a verificação; se houver divergência, corrigir antes de seguir.
+Definir a separação entre itens no `itemSpacing`/gap do auto-layout vertical, em px inteiros, com base na composição aprovada. Definir separadamente o gap horizontal entre ícone e texto. O espaço entre título, lista e chamada seguinte pertence ao container superior; não acumulá-lo no último item ou na entrelinha.
 
-Não duplicar marcadores que já estejam presentes no texto.
+Uma quebra dentro do mesmo item não cria um novo bullet. Não usar linhas em branco, espaços de parágrafo artificiais ou quebras manuais como espaçadores. Preservar quebras semânticas comprovadas e remover somente as usadas para posicionamento, conferindo o conteúdo após a edição.
+
+### Conteúdo e validação
+
+Identificar cada item pelo conteúdo e pela composição, sem dividir mecanicamente todas as quebras de linha. Preservar conteúdo, pontuação, ordem e estilos por trecho. Não duplicar marcadores já presentes no texto; ao separar um bullet textual em ícone, conferir sua função e a integridade da mensagem.
+
+Em uma cópia temporária, testar um item curto, um item com várias linhas e o crescimento do texto de um item intermediário. Confirmar que:
+
+- o texto quebra dentro da largura Fill e permanece nos limites úteis da linha, da lista e do suporte;
+- o ícone acompanha o item com alinhamento coerente;
+- a linha e a lista crescem em altura sem corte;
+- o item seguinte se desloca e mantém o gap vertical definido, sem depender da entrelinha;
+- a chamada seguinte e o suporte acompanham o crescimento sem colisões;
+- a hierarquia continua simples, sem wrappers compensatórios adicionados durante a correção.
+
+Restaurar o conteúdo, remover o ensaio e reler o resultado final. Comparar com o estado anterior e com a referência aprovada; registrar diferenças intencionais, limites e testes efetivamente feitos. Reaplicar a seção 13.1 após o fluxo recalcular, sem desfazer Fill/Hug para esconder frações.
+
+Referência estrutural observada: [card LAFE aprovado pelo usuário](https://www.figma.com/design/1tiTJjRhMNK5wgtaZVyRDR?node-id=9209-837), em comparação com o [card anterior](https://www.figma.com/design/1tiTJjRhMNK5wgtaZVyRDR?node-id=9072-3043). O exemplo aprovado tem quatro linhas diretas, gap vertical de 24 px e entrelinha de aproximadamente 120%; esses valores não são um padrão universal. Adotar sua lógica simplificada junto das exigências desta skill: todos os textos Fill/Hug e normalização pixel perfect. Não copiar Hug horizontal dos itens curtos ou frações residuais da referência como regras. Os princípios estão registrados aqui e não exigem acesso futuro ao arquivo LAFE.
 
 ## 15. Ícones e informações relacionadas
 
@@ -533,7 +577,7 @@ Preservar a relação visual original:
 
 Não centralizar automaticamente um ícone em relação a um texto longo se a referência o alinha ao início.
 
-Manter dimensões estáveis para ícones.
+Manter dimensões estáveis para ícones. Para listas repetidas, aplicar a seção 14: ícone e texto diretamente na linha horizontal, texto Fill/Hug e linhas empilhadas no container vertical, sem wrappers compensatórios.
 
 ## 16. Constraints e composição
 
@@ -795,8 +839,9 @@ Conferir:
 - ordem narrativa;
 - textos completos, ordem, pontuação, destaques, quebras intencionais e estilos, especialmente após separações;
 - fontes e estilos preservados por trecho;
-- tamanhos de fonte inteiros, entrelinhas em porcentagens múltiplas de 10 e tracking com até uma casa decimal, ou exceções identificadas;
-- medidas de layout em pixels inteiros onde viável, com restrições e exceções justificadas;
+- todos os textos e trechos com fonte inteira, entrelinha percentual explícita em 100%, 110%, 120%… e tracking com até uma casa decimal; usar a altura original mais próxima, salvo a correção de entrelinha artificial de listas conforme a seção 14;
+- dimensões, posições e demais medidas de layout inteiras em todos os objetos, relidas após o fluxo final; qualquer fração restante é pendência;
+- rodada de varredura dos formatos nominais e correção de todos os microdesvios comprovados dentro da tolerância da seção 13.1, com antes/depois;
 - índice auxiliar correspondente ao estado real, com limites observados e testes identificados;
 - ausência de alterações fora do escopo e preservação do conteúdo anterior da página de assets.
 
@@ -805,7 +850,11 @@ Conferir:
 Conferir:
 
 - agrupamentos semânticos;
-- listas com linhas próprias;
+- listas com um único auto-layout horizontal por item, ícone e texto diretos, e uma pilha vertical sem wrappers redundantes;
+- todos os textos de listas com largura Fill, altura Hug e quebra natural, dentro da largura efetiva dos containers;
+- containers e suportes comportando os textos sem overflow, corte ou colisão;
+- entrelinha compacta dentro dos itens e gap vertical explícito entre itens, sem entrelinha inflada ou padding compensatório;
+- testes de item curto, multilinha e crescimento intermediário com deslocamento correto dos vizinhos;
 - ícones vinculados aos textos;
 - fluxo real de auto-layout;
 - dimensionamento coerente;
@@ -873,14 +922,15 @@ Considerar concluído somente quando:
 - os elementos substituíveis estiverem identificáveis;
 - os agrupamentos representarem relações reais;
 - pessoas e imagens indivisíveis não dependerem de fragmentos complementares para formar o asset final;
-- limites reais e relações entre texto e suporte estiverem coerentes;
+- limites reais e relações entre texto e suporte estiverem coerentes, inclusive contenção e crescimento das listas;
+- listas tiverem hierarquia mínima, textos Fill/Hug e separação entre itens pelo gap vertical, com comportamento verificado;
 - os textos editáveis permanecerem editáveis;
 - os assets estiverem organizados por padrão no modo completo, em página existente e com o conteúdo anterior preservado, ou a etapa tiver sido desativada explicitamente pelo usuário;
 - o índice auxiliar estiver preenchido e localizado fora das artes, com capacidades observadas e testes identificados;
 - as máscaras restantes estiverem identificadas e justificadas, com alternativas consideradas;
 - a comparação de cada etapa com seu estado anterior e a conferência final com a referência aprovada estiverem registradas;
 - a integridade dos textos divididos estiver conferida;
-- a normalização tipográfica e geométrica estiver verificada, com valores finais e exceções registradas;
+- a normalização tipográfica e geométrica e a varredura de formatos estiverem verificadas, com valores finais registrados e sem pendências para declarar conclusão integral;
 - não houver regressões conhecidas sem indicação;
 - os testes realizados e suas limitações estiverem registrados.
 

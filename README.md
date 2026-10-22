@@ -1,6 +1,6 @@
 # Briv.IA — Templates
 
-Versão 1.4.0. Plugin privado com três skills independentes e dois modelos auxiliares de otimização. Usa o app Figma existente; não hospeda servidor próprio. A integração e os arquivos precisam estar acessíveis na conversa de execução. A base de conhecimento é fornecida pelo contexto ou pelas fontes conectadas, não embutida neste pacote.
+Versão 1.4.3. Plugin privado com três skills independentes e dois modelos auxiliares de otimização. Usa o app Figma existente; não hospeda servidor próprio. A integração e os arquivos precisam estar acessíveis na conversa de execução. A base de conhecimento é fornecida pelo contexto ou pelas fontes conectadas, não embutida neste pacote.
 
 ## O que contém
 
@@ -19,9 +19,9 @@ No fluxo geral de otimização, assets reutilizáveis são organizados por padr�
 
 ## Escolha da skill
 
-- Para otimizar e-mails: usar “Otimizador de EMM”. Reconstrói uma cópia ao lado por seções simples em auto-layout real, usa a largura padrão do cliente, textos Fill/Hug, pixels inteiros, header/footer compartilhados e zero camadas ignorando layout no corpo. A skill geral é aplicada somente ao banner. Inclui comparação visual de cada modelo e ensaios de crescimento de texto, listas, componentes e troca independente de imagem.
+- Para otimizar e-mails: usar “Otimizador de EMM”. Reconstrói uma cópia ao lado por seções simples em auto-layout real, usa a largura padrão do cliente, textos Fill/Hug, pixels inteiros, header/footer compartilhados e zero camadas ignorando layout no corpo. A otimização gráfica completa da skill geral é aplicada somente ao banner; o procedimento pixel perfect de tipografia, dimensões e posições vale para todo o e-mail. Inclui comparação visual de cada modelo e ensaios de crescimento de texto, listas, componentes e troca independente de imagem.
 
-- Para otimizar peças: usar “Otimizar templates Briv.IA”. Além da estrutura, normaliza tamanhos de fonte em inteiros, entrelinhas em porcentagens múltiplas de 10, tracking com no máximo uma casa decimal e medidas de layout em pixels inteiros quando viável. Preserva família e estilo de fonte e registra exceções.
+- Para otimizar peças: usar “Otimizar templates Briv.IA”. Além da estrutura, exige tamanhos de fonte, dimensões e posições inteiros, entrelinhas explícitas em 100%, 110%, 120%… e tracking com no máximo uma casa decimal. Inspeciona formatos nominais e corrige microdesvios comprovados de até 3 px e 0,5% por eixo. Preserva família e estilo de fonte e registra exceções.
 - Para organizar a página/board: usar “Organizador de assets Briv.IA”. Renomeia frames principais e organiza posição das peças, hierarquia, nomes, estilo, tamanho e posição das sections. Não altera conteúdo, tipografia, geometria interna nem dimensões das artes. Os padrões do organizador estão contidos na própria skill; não exige o arquivo de referência original.
 - Quando ambos forem solicitados: otimizar as peças e depois fazer a organização final da página, respeitando o escopo de cada skill.
 
@@ -44,3 +44,10 @@ A versão 1.1.0 adiciona normalização tipográfica/geométrica à otimização
 A versão 1.2.0 adiciona a skill “Otimizador de EMM” com o texto fornecido pelo usuário, em Markdown, e contexto para sua seleção no plugin. As duas skills anteriores permanecem disponíveis; o fluxo de e-mails não reorganiza a página nem executa automaticamente a otimização geral.
 
 A versão 1.4.0 consolida a reconstrução semântica como solução de e-mails, com a otimização gráfica limitada ao banner e nomenclatura de e-mail “Modelo N - Tipo”. As regras dos demais canais e a integração Figma permanecem preservadas.
+
+A versão 1.4.1 simplifica a organização externa somente em páginas dedicadas a e-mails (E-mail, EMM ou equivalente): sections de modelos diretamente na página, lado a lado, sem níveis de editoria/categoria ou tipo/formato. Usa padding de 200 px, gap de 100 px entre e-mails da mesma section e de 200 px entre sections, conforme a referência LAFE. Preserva agrupamentos explícitos de modelos e a identificação individual de cada frame. O Otimizador de EMM aplica essa exceção ao chamar o organizador; as demais páginas mantêm as regras gerais.
+
+
+A versão 1.4.2 torna a normalização pixel perfect obrigatória nas duas skills de otimização, inclusive em todo o e-mail. Converte entrelinhas em px/AUTO para percentuais múltiplos de 10 a partir de 100%, escolhendo a altura mais próxima da original com a fonte final inteira. Exige dimensões, posições e medidas de layout inteiras, com tracking como única medida que admite até uma casa decimal. Inclui varredura de formatos e microcorreção de até 3 px e 0,5% por eixo, preservando o fluxo Hug dos e-mails. Frações ou impedimentos restantes são pendências, sem declaração de conformidade integral.
+
+A versão 1.4.3 reforça a simplificação de listas, bullets e checkboxes na skill geral: uma linha horizontal por item com ícone e texto diretos, texto Fill/Hug e pilha vertical sem wrappers compensatórios. Exige contenção e crescimento dos containers e do suporte. Em listas com entrelinha inflada pela importação, usa entrelinha compacta (em geral 120% ou 130%) e separa os itens pelo gap vertical; essa correção estrutural prevalece sobre aproximar a entrelinha artificial original. Inclui testes de texto curto, multilinha e crescimento intermediário. A referência LAFE observada usa 24 px de gap, sem transformar esse valor em padrão universal.
