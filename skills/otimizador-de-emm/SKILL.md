@@ -112,17 +112,18 @@ A seção Banner participa normalmente do auto-layout do e-mail. Dentro dela, a 
 
 A composição manual dentro da arte é legítima; não precisa ser simulada com dezenas de camadas ignorando um auto-layout. Organizar chamadas relacionadas em blocos de auto-layout e manter as unidades gráficas fáceis de substituir.
 
-Remover máscaras herdadas:
-- aplicar fotografia como preenchimento com crop em vetor nativo, quando fiel;
+Classificar as máscaras antes de simplificar, seguindo a regra obrigatória da seção 10 da skill geral:
+- para fotografia de fundo em forma geométrica característica da identidade visual, manter a forma nativa do Figma como máscara e a fotografia como camada substituível separada; não rasterizar o conjunto, incorporar o formato ao alfa nem converter a máscara em preenchimento;
+- nos demais casos, remover máscaras herdadas e aplicar fotografia como preenchimento com crop em vetor nativo, quando fiel;
 - consolidar fragmentos de uma mesma pessoa em um único PNG transparente, com área útil e resolução adequada;
-- manter fotografia, filtro e pessoa separados;
+- manter fotografia, filtro e pessoa separados; a pessoa fica fora da máscara do fundo, como uma única imagem com transparência real;
 - conservar formas e degradês nativos quando possível.
 
 Não rasterizar o banner inteiro nem o e-mail inteiro. Exportar somente unidades indivisíveis, como pessoa, montagem de produto, marca ou ícone. Uma montagem de produto deve virar um asset independente, sem incluir texto do corpo. Não confundir o acervo com uma peça final.
 
 Se o banner de origem for uma imagem única, reconstruir texto editável e grafismos nativos e aproveitar somente a região fotográfica sem texto. Registrar a origem raster e qualquer diferença residual de fidelidade. Não inventar uma fonte ou declarar uma marca vetorial se ela continua raster.
 
-Organizar os assets reutilizáveis na página existente de imagens, preservando o conteúdo anterior, conforme a skill geral. Testar em uma cópia a substituição independente de pelo menos uma unidade representativa e remover o ensaio.
+Organizar os assets reutilizáveis na página existente de imagens, preservando o conteúdo anterior, conforme a skill geral. Testar em uma cópia a substituição independente de pelo menos uma unidade representativa e remover o ensaio. Havendo fundo geométrico, incluir a troca apenas da fotografia por outra imagem retangular autorizada, sem preparar seu formato antes; confirmar que a mesma máscara mantém o contorno e que pessoa, filtro e grafismos continuam independentes. Registrar a fonte completa, o conjunto nativo de máscara + fotografia e o resultado no índice; se faltar material para testar, declarar a pendência.
 
 ## 8. Header e footer compartilhados
 
@@ -159,7 +160,7 @@ Fazer a segunda etapa de qualidade depois da reconstrução. Conferir todos os e
 - todos os containers do corpo em auto-layout;
 - textos Fill/Hug e sem cortes;
 - zero “Ignorar layout automático” fora da composição gráfica;
-- zero máscaras em todos os templates;
+- máscaras geométricas de fundo preservadas conforme a seção 10 da skill geral, com forma nativa e fotografia separadas; demais máscaras herdadas eliminadas quando houver alternativa fiel e reutilizável, e qualquer permanência adicional identificada e justificada;
 - dimensões e posições de todos os objetos, padding, gaps e demais medidas de layout inteiros, sem escalas acidentais ou frações não resolvidas;
 - todos os textos e trechos com fontes inteiras, entrelinha explícita em 100%, 110%, 120%… e tracking com até uma casa decimal;
 - varredura dos formatos e correção dos microdesvios comprovados dentro da tolerância, com registro antes/depois, preservando alturas Hug;

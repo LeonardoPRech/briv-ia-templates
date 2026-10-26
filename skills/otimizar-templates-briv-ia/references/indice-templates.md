@@ -12,11 +12,13 @@ Usar este modelo no modo completo e ao orientar outra IA a escolher templates. P
 | Formato | Tipo e dimensões reais; não deduzir variantes ausentes |
 | Blocos de texto | Quantidade, função e identificação de cada bloco; distinguir itens de lista e camadas internas |
 | Imagens | Pessoa, fundo, produto ou montagem; presença, localização e independência de substituição |
+| Fundo geométrico | Quando houver: IDs da forma/máscara nativa e da fotografia, fonte completa, geometria fixa a preservar, agrupamento reutilizável e pessoa independente; trocar só a fotografia, sem exigir imagem pré-recortada |
+| Troca do fundo geométrico | Imagem retangular autorizada usada, contorno mantido pela mesma máscara, enquadramento, independência dos demais elementos e evidência; indicar “não testado” quando aplicável |
 | Capacidade aproximada observada | Conteúdo atual: linhas por bloco, itens, caracteres se medidos; nunca apresentar como máximo |
 | Campos substituíveis | Texto/imagem, localização, agrupamentos que devem permanecer juntos |
 | Elementos fixos | Marca, decoração e outras restrições verificadas |
 | Comportamento testado | Alteração exata, resultado, evidência e versão; usar “não testado” quando aplicável |
-| Limitações | Cortes/colisões verificados, fontes ausentes, texto incorporado, máscaras restantes, dependências |
+| Limitações | Cortes/colisões verificados, fontes ausentes, texto incorporado, demais máscaras restantes, dependências e testes pendentes; uma máscara geométrica de fundo correta é estrutura exigida, não defeito |
 | Adaptações relacionadas | IDs/links existentes e relação observada; registrar “não identificadas” quando for o caso |
 | Referência aprovada e base aplicável | Identificação das referências usadas, sem inventar regras de marca |
 

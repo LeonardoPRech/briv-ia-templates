@@ -38,6 +38,7 @@ Preservar a identidade visual das artes, a associação entre adaptações e a s
 - Se o pedido for apenas análise, não fazer alterações.
 - Na aplicação, alterar somente nomes dos frames principais de assets, suas posições externas, organização da página, sections organizacionais e seus nomes, dimensões, posições e estilos. Mover arte ou legenda sempre como unidade.
 - Não alterar textos, fontes, tamanhos de fonte, entrelinhas, tracking, imagens, vetores, componentes, dimensões, escala, rotação, recortes, efeitos ou composição interna das artes e legendas. Não renomear seus descendentes. A posição externa do conjunto pode mudar; a geometria relativa interna deve permanecer idêntica.
+- Preservar também as máscaras geométricas de fundo e suas fotografias independentes ao mover a arte como unidade. A regra de fundo da seção 10 de [Otimizar templates Briv.IA](../otimizar-templates-briv-ia/SKILL.md#10-máscaras-e-imagens-compostas) não autoriza reconstruir, rasterizar ou remover camadas internas em um pedido exclusivo de organização.
 - Não destacar instâncias, modificar componentes principais ou converter as artes em auto-layout.
 - Respeitar bloqueios existentes e relatar itens impedidos.
 - Não organizar materiais soltos ou auxiliares como peças finais sem evidência de que pertencem ao conjunto.
