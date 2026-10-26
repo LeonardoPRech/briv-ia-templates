@@ -1,6 +1,6 @@
 # Briv.IA — Templates
 
-Versão 1.4.3. Plugin privado com três skills independentes e dois modelos auxiliares de otimização. Usa o app Figma existente; não hospeda servidor próprio. A integração e os arquivos precisam estar acessíveis na conversa de execução. A base de conhecimento é fornecida pelo contexto ou pelas fontes conectadas, não embutida neste pacote.
+Versão 1.4.4. Plugin privado com três skills independentes e dois modelos auxiliares de otimização. Usa o app Figma existente; não hospeda servidor próprio. A integração e os arquivos precisam estar acessíveis na conversa de execução. A base de conhecimento é fornecida pelo contexto ou pelas fontes conectadas, não embutida neste pacote.
 
 ## O que contém
 
@@ -17,6 +17,12 @@ Selecionar o plugin e indicar o arquivo/página ou peças do Figma, exclusões, 
 
 No fluxo geral de otimização, assets reutilizáveis são organizados por padrão em uma página existente sem alterar seu conteúdo anterior. Para desativar, dizer “não organizar a biblioteca de imagens”. O índice fica fora das artes e identifica o que foi observado, testado e não testado. Falta de ferramenta ou acesso deve aparecer como limitação, nunca como operação concluída.
 
+## Regra de imagens de fundo
+
+Em todos os clientes e formatos, inclusive banners de EMM, manter como máscara nativa do Figma a forma geométrica característica que delimita uma fotografia de fundo. A forma e a fotografia continuam editáveis e separadas; a pessoa à frente é uma imagem transparente independente, sem máscara. Não rasterizar o fundo junto da forma nem exigir que a próxima foto já venha naquele formato. A regra vale para esse tipo de fundo, com ou sem pessoa à frente; os demais recortes continuam evitando máscaras. O organizador preserva essa estrutura ao mover a arte como unidade, sem editar seu interior.
+
+Conferir em cópia temporária que a troca somente da fotografia por outra imagem retangular mantém o contorno da mesma máscara. Registrar a fonte completa, o conjunto nativo e o resultado no índice e na validação. Não usar “zero máscaras” como critério universal de qualidade.
+
 ## Escolha da skill
 
 - Para otimizar e-mails: usar “Otimizador de EMM”. Reconstrói uma cópia ao lado por seções simples em auto-layout real, usa a largura padrão do cliente, textos Fill/Hug, pixels inteiros, header/footer compartilhados e zero camadas ignorando layout no corpo. A otimização gráfica completa da skill geral é aplicada somente ao banner; o procedimento pixel perfect de tipografia, dimensões e posições vale para todo o e-mail. Inclui comparação visual de cada modelo e ensaios de crescimento de texto, listas, componentes e troca independente de imagem.
@@ -30,7 +36,7 @@ No fluxo geral de otimização, assets reutilizáveis são organizados por padr�
 Baseado na leitura integral de `otimizar-templates-briv-ia.txt`, preservando os princípios e as 26 seções. Alterações consolidadas:
 
 1. Biblioteca de imagens no fluxo completo por padrão, desativável pelo usuário.
-2. Substituição prioritária de máscaras herdadas; identificação e justificativa de cada máscara restante.
+2. Preservação obrigatória de máscaras nativas para fotografias de fundo em formas geométricas características da identidade visual; nos demais casos, substituição prioritária de máscaras herdadas e identificação/justificativa das restantes.
 3. Fundo, filtro/degradê nativo e pessoa com transparência real separados para substituições independentes.
 4. Comparações por etapa com estado anterior e fidelidade final com referência aprovada, prevalecendo a arte refeita pelo usuário quando aprovada.
 5. Conferência objetiva de conteúdo, ordem, pontuação, destaques e quebras intencionais após separar textos.
@@ -51,3 +57,5 @@ A versão 1.4.1 simplifica a organização externa somente em páginas dedicadas
 A versão 1.4.2 torna a normalização pixel perfect obrigatória nas duas skills de otimização, inclusive em todo o e-mail. Converte entrelinhas em px/AUTO para percentuais múltiplos de 10 a partir de 100%, escolhendo a altura mais próxima da original com a fonte final inteira. Exige dimensões, posições e medidas de layout inteiras, com tracking como única medida que admite até uma casa decimal. Inclui varredura de formatos e microcorreção de até 3 px e 0,5% por eixo, preservando o fluxo Hug dos e-mails. Frações ou impedimentos restantes são pendências, sem declaração de conformidade integral.
 
 A versão 1.4.3 reforça a simplificação de listas, bullets e checkboxes na skill geral: uma linha horizontal por item com ícone e texto diretos, texto Fill/Hug e pilha vertical sem wrappers compensatórios. Exige contenção e crescimento dos containers e do suporte. Em listas com entrelinha inflada pela importação, usa entrelinha compacta (em geral 120% ou 130%) e separa os itens pelo gap vertical; essa correção estrutural prevalece sobre aproximar a entrelinha artificial original. Inclui testes de texto curto, multilinha e crescimento intermediário. A referência LAFE observada usa 24 px de gap, sem transformar esse valor em padrão universal.
+
+A versão 1.4.4 padroniza a preservação de máscaras geométricas de fundo na skill geral, nos princípios, no EMM, no organizador e nos registros. Mantém forma nativa, fotografia substituível e pessoa transparente independentes; impede achatar o fundo com sua forma, substitui o critério universal de zero máscaras e inclui a validação da troca por foto retangular sem pré-recorte. A preferência por evitar máscaras nas demais imagens continua válida.

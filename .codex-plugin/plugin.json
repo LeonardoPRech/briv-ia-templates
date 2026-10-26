@@ -18,7 +18,7 @@
     "composerIconDark": "./assets/briv-ia-e07b89ff.png"
   },
   "name": "briv-ia-templates",
-  "version": "1.4.3",
+  "version": "1.4.4",
   "description": "Otimiza templates do Briv.IA no Figma com composi\u00e7\u00e3o preservada, assets reutiliz\u00e1veis e \u00edndice de sele\u00e7\u00e3o baseado em evid\u00eancias.",
   "author": {
     "name": "Leonardo Rech",

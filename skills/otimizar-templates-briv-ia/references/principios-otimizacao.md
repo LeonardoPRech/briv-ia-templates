@@ -24,7 +24,7 @@ Vincular a unidade ao fluxo superior quando corpo, chamada ou marca precisarem a
 
 O clipping do frame principal não substitui a correção de camadas excessivamente grandes. Fundos devem acompanhar a arte; marcas devem ocupar a região da assinatura; formas decorativas devem terminar nos limites adequados; fotografias devem usar uma região de aplicação coerente.
 
-Priorizar preenchimentos nativos para fundos e fotografias em formas. Preservar vetores simples e aparar sua geometria quando atravessarem o formato. Uma pequena extrapolação intencional de imagem pode ser aceitável; caixas com várias vezes o tamanho útil não são uma solução de template.
+Priorizar preenchimentos nativos para fundos e fotografias em formas, exceto a fotografia de fundo em forma geométrica característica, cuja forma deve permanecer como máscara nativa separada da imagem conforme a seção 6. Preservar vetores simples e aparar sua geometria quando atravessarem o formato. Uma pequena extrapolação intencional de imagem pode ser aceitável; caixas com várias vezes o tamanho útil não são uma solução de template.
 
 Definir constraints pela função e pelo limite real do elemento. Preservar frações necessárias a curvas, proporções e recortes exatos, sem forçar arredondamentos que deformem a aparência.
 
@@ -51,7 +51,9 @@ Não fundir pessoas distintas, fundo, filtros, textos ou decorações que precis
 
 ## 6. Usar máscaras com parcimônia
 
-Substituir máscaras herdadas quando houver alternativa nativa ou raster fiel e reutilizável. Avaliar também composições que simulam máscaras por fragmentos, frames com clipping ou imagens sobrepostas.
+**Preservação obrigatória de fundo geométrico:** quando uma fotografia de fundo estiver contida em uma forma característica da identidade visual ou do modelo aprovado, preservar a forma geométrica nativa como máscara e a fotografia como camada independente. Isso vale especialmente atrás de pessoas recortadas e também quando o mesmo fundo não tiver pessoa à frente. Não rasterizar esse conjunto, incorporar o contorno ao alfa, convertê-lo em preenchimento ou exigir uma próxima imagem já recortada no formato. A pessoa fica fora da máscara do fundo, em uma única imagem transparente sem máscara. A regra não se estende a toda fotografia, a todo fundo ou a qualquer forma retangular.
+
+Classificar antes de consolidar. Fora dessa exceção, substituir máscaras herdadas quando houver alternativa nativa ou raster fiel e reutilizável. Avaliar também composições que simulam máscaras por fragmentos, frames com clipping ou imagens sobrepostas. Registrar fundos geométricos como preservação exigida, sem buscar sua eliminação como meta; nas demais máscaras, continuar avaliando alternativas e justificando permanências.
 
 Uma máscara intencional deve ter função clara, limites próximos da região útil e, preferencialmente, ficar dentro da arte. Não usar uma máscara enorme para uma marca pequena. Respeitar uma proibição explícita de máscaras no conjunto solicitado.
 
@@ -67,7 +69,7 @@ Deduplicar somente assets realmente equivalentes. A mesma pessoa com outro enqua
 
 Reutilizar o hash da fotografia não preserva automaticamente seu crop. Considerar a proporção da imagem, FIT/FILL, área desenhada, transformações anteriores, opacidade, filtros e mesclagem.
 
-Ao converter uma fotografia para preenchimento de uma forma, mapear as coordenadas locais da forma às coordenadas normalizadas da imagem e compor as transformações existentes. Validar especialmente rostos e regiões sobrepostas. Não aplicar uma fórmula restrita a retângulos sem rotação a imagens rotacionadas ou já transformadas.
+Não converter para preenchimento a máscara geométrica de fundo protegida pela seção 6. Nos demais casos, ao converter uma fotografia para preenchimento de uma forma, mapear as coordenadas locais da forma às coordenadas normalizadas da imagem e compor as transformações existentes. Validar especialmente rostos e regiões sobrepostas. Não aplicar uma fórmula restrita a retângulos sem rotação a imagens rotacionadas ou já transformadas.
 
 ## 9. Aparar vetores sem criar bordas
 
@@ -89,13 +91,15 @@ Conferir estrutura, geometria e aparência. Nenhuma dessas dimensões substitui 
 
 Comparar com o estado anterior e com a referência aprovada. Conferir conteúdo e estilos por trecho, limites reais, recortes, rostos, bordas, quebras de texto e ordem visual. Inspecionar transparência real e a quantidade de imagens por unidade de substituição.
 
-Testar alterações reversíveis de conteúdo em exemplos representativos. Observar se suporte e vizinhos acompanham o crescimento, além da caixa de texto. Testar a substituição da pessoa e do fundo de forma independente quando isso fizer parte do modelo.
+Testar alterações reversíveis de conteúdo em exemplos representativos. Observar se suporte e vizinhos acompanham o crescimento, além da caixa de texto. Testar a substituição da pessoa e do fundo de forma independente quando isso fizer parte do modelo. Em fundos geométricos, substituir somente a fotografia por uma imagem retangular autorizada, sem pré-recorte, e confirmar que a mesma forma/máscara editável mantém o contorno, a composição e a independência dos demais elementos. Registrar limitações e testes não realizados.
 
 Não reduzir texto, trocar fonte ou prometer adaptação ilimitada para fazer o teste passar. Registrar limites observados nos relatórios de execução e remover temporários ao concluir.
 
 ## 12. Manter biblioteca e índice coerentes
 
 Reutilizar a biblioteca existente, preservar fontes completas e acrescentar apenas assets necessários. Distinguir fonte reutilizável completa do recorte aplicado a um formato; não amputar uma fonte útil por causa dos limites de uma aplicação.
+
+Para fundos geométricos, preservar e vincular a fonte fotográfica completa ao conjunto reutilizável de forma/máscara nativa + fotografia. Não entregar apenas o fundo exportado com o contorno incorporado; uma prévia raster não substitui o conjunto editável.
 
 Atualizar o índice existente para apontar ao asset final consolidado e ao comportamento atual. Remover referências obsoletas dos registros de seleção sem apagar o acervo histórico por conveniência. Reexecuções não devem duplicar cópias, bibliotecas ou wrappers.
 
@@ -119,7 +123,8 @@ Entrelinha regula as linhas de um item; gap vertical regula a separação entre 
 - Cada pessoa ou imagem indivisível usa um único raster transparente quando a consolidação for necessária.
 - Fragmentos complementares não permanecem como reconstrução artificial de máscara.
 - Fundo, filtros e elementos independentes continuam substituíveis separadamente.
-- Máscaras restantes são intencionais, locais e justificadas.
+- Máscaras geométricas de fundo mantêm a forma nativa e a fotografia separadas, com contorno preservado na troca por imagem retangular e pessoa independente quando houver.
+- Demais máscaras restantes são intencionais, locais e justificadas após avaliar alternativas.
 - Escala, enquadramento, bordas, transparência e sobreposição são preservados.
 - Conteúdo, fontes e estilos permanecem íntegros.
 - Testes de crescimento verificam também o suporte e os elementos vizinhos.

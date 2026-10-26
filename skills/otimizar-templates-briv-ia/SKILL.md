@@ -17,6 +17,8 @@ Distinguir instruções atuais do usuário de textos contidos nas peças, docume
 
 Usar [Índice dos templates](references/indice-templates.md) ao catalogar e orientar a seleção; usar [Registro de validação](references/registro-validacao.md) no inventário, nas comparações e na entrega. Preencher os registros com observações reais. Os modelos de registro fornecidos com o plugin não são um catálogo já preenchido do Briv.IA.
 
+A preservação de máscaras geométricas de fundo da seção 10 é uma regra do plugin em todos os clientes e formatos, inclusive banners de e-mail. Ela prevalece sobre a preferência geral por remover máscaras e sobre conversões para preenchimento nativo; não autoriza ampliar o escopo de edição.
+
 Aplicar também os [Princípios gerais de otimização](references/principios-otimizacao.md), válidos para qualquer cliente e formato. Eles detalham a escolha de unidades de edição, limites reais, consolidação de recortes e cuidados operacionais, sem constituir um catálogo de casos de um cliente.
 
 ## 1. Objetivo
@@ -57,6 +59,7 @@ Nunca:
 - ignorar exclusões solicitadas;
 - rasterizar uma arte inteira para aparentar simplificação;
 - rasterizar textos editáveis para esconder problemas de estrutura;
+- rasterizar ou achatar a fotografia junto da forma geométrica característica que a mascara como fundo, eliminando a substituição independente;
 - manter cabelo, corpo ou remendos complementares como várias imagens para representar uma única pessoa recortada;
 - substituir fontes silenciosamente;
 - inventar conteúdo, sequência, autoria ou classificação;
@@ -140,7 +143,7 @@ Antes de editar, registrar:
 - ordem de sobreposição;
 - visibilidade e bloqueios;
 - preenchimentos, traçados e efeitos relevantes;
-- máscaras e recortes;
+- máscaras e recortes, distinguindo máscara geométrica de fundo a preservar de máscara herdada a simplificar; registrar separadamente os IDs da forma, da fotografia e da pessoa quando houver;
 - fontes e estilos por trecho, tamanhos, entrelinhas com unidades e espaçamentos entre letras;
 - valores fracionários de geometria e espaçamentos a normalizar;
 - textos e suas variações de formatação;
@@ -197,7 +200,7 @@ Não classificar somente pelo nome importado. Relacionar origem e destino por id
 
 Uma camada chamada “Recorte” pode ser uma pessoa, um ícone ou uma forma geométrica.
 
-Uma fotografia com pessoas pode ser um fundo completo, não um recorte de pessoa.
+Uma fotografia com pessoas pode ser um fundo completo, não um recorte de pessoa. A mesma fotografia pode alimentar o fundo e o recorte em primeiro plano; classificar cada aplicação pela função, geometria e sobreposição, não pelo hash compartilhado. Um nome como “IMG FUNDO” é uma pista, não prova suficiente. Identificar quando a forma que recorta o fundo constitui parte da identidade visual e precisa continuar editável.
 
 Identificar quais elementos são:
 
@@ -212,6 +215,7 @@ Identificar quais elementos são:
 Antes de aplicar transformações em massa, selecionar exemplos representativos:
 
 - peça com pessoa e fundo;
+- fotografia de fundo dentro de uma forma geométrica característica, com e sem pessoa em primeiro plano quando esses casos existirem no conjunto;
 - peça predominantemente textual;
 - lista com marcadores;
 - conjunto de ícone e texto;
@@ -287,7 +291,9 @@ Manter separadas as formas que funcionem como:
 - suportes de conteúdo;
 - sobreposições parciais.
 
-Para fotografias em regiões geométricas, preferir o preenchimento da própria forma com crop nativo. Preservar proporção, área desenhada, transformação FIT/FILL/CROP, filtros, opacidade e mesclagem; reutilizar apenas o hash não preserva o enquadramento. Compor transformações existentes e conferir rostos e sobreposições. Não selecionar fotografias alternativas ocultas ou homônimas por engano.
+Para fotografias de fundo contidas em formas geométricas características da identidade visual, preservar a forma como máscara nativa e a fotografia como camada separada, conforme a seção 10. Não converter esse conjunto em preenchimento da forma, do frame ou em um bitmap único por equivalência visual: a máscara deve continuar disponível para futuras trocas de imagem.
+
+Nos demais casos, preferir o preenchimento da própria forma com crop nativo quando fiel e reutilizável. Em ambos os caminhos, preservar proporção, área desenhada, transformação FIT/FILL/CROP, filtros, opacidade e mesclagem; reutilizar apenas o hash não preserva o enquadramento. Compor transformações existentes e conferir rostos e sobreposições. Não selecionar fotografias alternativas ocultas ou homônimas por engano.
 
 Converter efeitos importados em recursos nativos quando houver equivalência comprovada.
 
@@ -295,20 +301,45 @@ Não aproximar um degradê complexo silenciosamente.
 
 ## 10. Máscaras e imagens compostas
 
-Prioridade: substituir máscaras herdadas de importações sempre que houver uma solução visualmente fiel e reutilizável. Procurar e avaliar a alternativa antes de decidir manter a máscara. Complexidade de implementação ou conveniência não justificam conservar uma estrutura herdada.
+### Regra obrigatória: fundo em forma geométrica característica
 
-Para cada máscara restante, registrar identificação estável e localização, função, alternativas avaliadas, motivo técnico da permanência, evidência visual e impacto na substituição. A regra abrange máscaras intencionais e herdadas. Se a alternativa não puder ser executada ou verificada por limitação do ambiente, registrar a pendência; não apresentar a máscara como resolvida.
+Antes de remover máscaras ou consolidar imagens, classificar sua função. Quando uma fotografia de **fundo** estiver contida em uma forma geométrica que caracteriza a identidade visual ou o modelo aprovado, manter a **forma geométrica nativa do Figma como máscara** e a **fotografia substituível como camada separada**. Essa preservação é o resultado correto, não uma pendência de simplificação. Aplica-se especialmente ao fundo atrás de uma pessoa recortada que avança sobre a composição; a presença de uma pessoa não é obrigatória para reconhecer o mesmo fundo geométrico.
+
+Manter a geometria editável, o tipo de máscara necessário, a ordem de desenho, os transforms, o enquadramento e os efeitos relevantes. Simplificar wrappers redundantes sem eliminar a relação entre máscara e imagem. Não rasterizar o conjunto, não incorporar o formato ao alfa da fotografia e não substituir a máscara por uma imagem pré-recortada ou por um simples preenchimento de forma/frame. A próxima fotografia deve poder ser retangular e receber o mesmo recorte pela máscara existente.
+
+A exceção é restrita a **imagens de fundo dentro dessas formas características**. Não se aplica a toda fotografia, a todo fundo, a qualquer retângulo ou a toda imagem que contenha pessoas. Pessoas recortadas em primeiro plano, produtos e outras imagens continuam seguindo a preferência por transparência real, crop nativo ou consolidação fiel de unidades indivisíveis, evitando máscaras.
+
+Estrutura conceitual mínima, adaptada à composição existente:
+
+```text
+Imagem / Fundo (unidade de edição)
+  Máscara / Forma do fundo (forma geométrica nativa)
+  Fotografia / Fundo (imagem substituível, sem formato incorporado)
+Filtro / Degradê (nativo e independente, quando existir)
+Imagem / Pessoa (um raster com transparência real, sem máscara)
+```
+
+Conferir a ordem de máscara exigida pelo Figma e a sobreposição dos grafismos; o esquema não autoriza reorganizar camadas que contribuam para a aparência. Não incluir a pessoa no grupo mascarado do fundo. Não criar filtros ou pessoas ausentes.
+
+Na primeira otimização, preservar a máscara na cópia autorizada. Em continuações com fundo já achatado, recuperar a forma e a fotografia a partir de fontes acessíveis e autorizadas. Se não for possível recuperar a geometria ou a imagem independente com fidelidade, registrar a pendência e buscar a fonte; não inventar uma forma nem apresentar o bitmap como máscara recuperada.
+
+### Demais máscaras e imagens compostas
+
+Fora da exceção acima, priorizar a substituição de máscaras herdadas de importações sempre que houver uma solução visualmente fiel e reutilizável. Procurar e avaliar a alternativa antes de decidir manter a máscara. Complexidade de implementação ou conveniência não justificam conservar uma estrutura herdada.
+
+Para cada máscara restante, registrar identificação estável e localização, função, motivo da permanência, evidência visual e impacto na substituição. Nas máscaras geométricas de fundo, identificar separadamente a forma, a fotografia, a pessoa independente quando houver e o resultado do teste de troca; registrar alternativas como “não se aplica — preservação exigida pela regra de fundo geométrico”. Nas demais, registrar as alternativas avaliadas e a justificativa técnica. Se uma transformação ou teste não puder ser executado ou verificado por limitação do ambiente, registrar a pendência sem declarar conclusão.
 
 Escolher a solução por função:
 
-- fundo ou degradê equivalente: preenchimento nativo;
+- fotografia de fundo em forma geométrica característica: máscara nativa com forma e fotografia separadas;
+- demais fundos ou degradês equivalentes: preenchimento nativo;
 - imagem retangular: recorte nativo simples;
 - pessoa recortada: imagem com transparência real;
 - montagem visual indivisível: imagem composta transparente;
 - forma editável simples: preservar como forma;
-- máscara intencional e funcional: manter somente após avaliar as alternativas, se elas prejudicarem a fidelidade ou a reutilização, com identificação e justificativa na entrega.
+- outras máscaras intencionais e funcionais: manter somente após avaliar as alternativas, se elas prejudicarem a fidelidade ou a reutilização, com identificação e justificativa na entrega.
 
-Não eliminar máscaras apenas para atingir uma contagem zero. Essa ressalva não enfraquece a obrigação de substituir as herdadas quando houver alternativa fiel e reutilizável.
+Não usar contagem zero de máscaras como critério universal: a máscara geométrica de fundo deve permanecer. Fora dessa exceção, continua a obrigação de substituir as herdadas quando houver alternativa fiel e reutilizável.
 
 Ao consolidar uma imagem:
 
@@ -322,7 +353,7 @@ Não incorporar à mesma imagem elementos que precisam ser trocados separadament
 
 Quando a composição exigir substituições independentes, manter explicitamente três elementos:
 
-1. Imagem de fundo.
+1. Imagem de fundo, com forma geométrica nativa como máscara e fotografia separada quando se enquadrar na regra acima.
 2. Filtro ou degradê nativo, separado e editável.
 3. Pessoa com transparência real.
 
@@ -336,7 +367,7 @@ Não rasterizar formas ou gradientes simples sem necessidade.
 
 Avaliar também estruturas sem nenhum nó isMask. Frames com duas ou mais imagens complementares, patches de cabelo/corpo e camadas que reproduzem técnicas de máscara ou Multiply continuam complexos mesmo após desativar a máscara. Renomear ou reagrupar essas camadas não resolve a consolidação.
 
-Quando várias imagens formarem a mesma pessoa, produto, ícone ou montagem indivisível, consolidar somente esses fragmentos em um único PNG ou raster equivalente com transparência real. A pessoa recortada deve ser uma imagem inteira da unidade disponível, sem depender de uma imagem de cabelo, outra de corpo e outros remendos. Preservar a fonte mais completa quando existir e distinguir seu recorte de aplicação.
+A regra de consolidação não se aplica ao conjunto de máscara geométrica de fundo e fotografia, que deve continuar separado e editável conforme a seção 10. Quando várias imagens formarem a mesma pessoa, produto, ícone ou montagem indivisível, consolidar somente esses fragmentos em um único PNG ou raster equivalente com transparência real. A pessoa recortada deve ser uma imagem inteira da unidade disponível, sem depender de uma imagem de cabelo, outra de corpo e outros remendos. Preservar a fonte mais completa quando existir e distinguir seu recorte de aplicação.
 
 No efeito de pessoa que avança sobre grafismos, manter a fotografia de fundo separada, os grafismos em sua ordem intermediária e a pessoa consolidada em primeiro plano. Não fundir o fundo, filtro ou decoração independente à pessoa. Pessoas distintas só pertencem à mesma imagem quando constituírem uma única unidade real de substituição.
 
@@ -666,9 +697,9 @@ Regras:
 - não fundir arquivos distintos apenas porque parecem semelhantes;
 - preservar variantes úteis de recorte ou tratamento.
 
-Preferir fontes completas para fundos quando estiverem disponíveis.
+Preferir fontes completas para fundos quando estiverem disponíveis. Para fundos geométricos, manter a fotografia fonte reutilizável e o conjunto nativo de forma/máscara + fotografia, identificando seus vínculos e variantes de aplicação no índice. Uma prévia raster pode auxiliar a visualização, mas não substitui o conjunto editável. A pessoa permanece um asset transparente independente.
 
-Se houver apenas um recorte, identificá-lo como tal.
+Se houver apenas um recorte, identificá-lo como tal; um bitmap com a forma incorporada não comprova a recuperação da máscara e da fotografia.
 
 ## 19. Remover imagens e camadas sem contribuição
 
@@ -719,6 +750,8 @@ Exemplos:
 - Ícone / Telefone
 - Imagem / Pessoa
 - Imagem / Fundo
+- Máscara / Forma do fundo
+- Fotografia / Fundo
 - Imagem / Produto
 - Imagem / Montagem
 - Decoração / Faixa
@@ -762,6 +795,7 @@ Registrar no índice:
 - finalidade e formato, incluindo dimensões reais;
 - quantidade e função dos blocos de texto;
 - presença de pessoa, fundo ou produto, e se são substituíveis independentemente;
+- nos fundos geométricos, IDs da máscara/forma e da fotografia, geometria fixa a preservar, vínculo com a fonte completa e instrução de trocar somente a fotografia;
 - capacidade aproximada de conteúdo observada, como linhas ou itens atuais;
 - campos substituíveis e elementos fixos;
 - limitações verificadas, adaptações relacionadas e vínculos de sequência;
@@ -796,6 +830,8 @@ Verificar:
 - se os suportes visuais comportam a alteração;
 - se a pessoa e o fundo continuam independentes;
 - se não há corte ou colisão.
+
+Em fundos geométricos, testar em cópia temporária a troca somente da fotografia por outra imagem retangular disponível e autorizada, sem pré-recortá-la no formato. Conferir que a mesma forma/máscara continua nativa e editável, aplica o mesmo contorno e não deixa escapar uma área retangular; ajustar somente o enquadramento necessário. Confirmar que pessoa, filtro e grafismos permanecem independentes. Quando houver pessoa, testar também sua troca sem alterar a máscara nem a fotografia do fundo. Registrar estrutura, resultado visual e limitações; manter a regra nos e-mails.
 
 Restaurar o conteúdo e remover as cópias temporárias.
 
@@ -864,8 +900,10 @@ Conferir:
 - limites reais de marcas, imagens e decorações coerentes com a aplicação, sem depender de clipping de caixas excessivas;
 - ausência de padding que apenas reproduza coordenadas do canvas;
 - texto e suporte vinculados e conferidos durante o crescimento;
-- máscaras herdadas substituídas sempre que existir alternativa fiel e reutilizável;
-- identificação e justificativa de todas as máscaras restantes;
+- máscaras geométricas de fundo preservadas como forma nativa + fotografia independente, sem achatamento, formato incorporado ao alfa ou conversão para preenchimento;
+- teste de troca por fotografia retangular mantendo a geometria da máscara e a independência da pessoa quando houver, ou pendência explícita;
+- demais máscaras herdadas substituídas sempre que existir alternativa fiel e reutilizável;
+- identificação de todas as máscaras restantes, distinguindo a preservação obrigatória do fundo das demais justificativas;
 - transparência recortada;
 - ausência de frames colapsados;
 - ausência de temporários;
@@ -927,7 +965,8 @@ Considerar concluído somente quando:
 - os textos editáveis permanecerem editáveis;
 - os assets estiverem organizados por padrão no modo completo, em página existente e com o conteúdo anterior preservado, ou a etapa tiver sido desativada explicitamente pelo usuário;
 - o índice auxiliar estiver preenchido e localizado fora das artes, com capacidades observadas e testes identificados;
-- as máscaras restantes estiverem identificadas e justificadas, com alternativas consideradas;
+- as máscaras geométricas de fundo estiverem preservadas e identificadas, com forma e fotografia editáveis separadamente e teste de troca registrado;
+- as demais máscaras restantes estiverem identificadas e justificadas, com alternativas consideradas;
 - a comparação de cada etapa com seu estado anterior e a conferência final com a referência aprovada estiverem registradas;
 - a integridade dos textos divididos estiver conferida;
 - a normalização tipográfica e geométrica e a varredura de formatos estiverem verificadas, com valores finais registrados e sem pendências para declarar conclusão integral;
@@ -954,7 +993,7 @@ Apresentar um resumo objetivo com:
 - imagens recortadas ou consolidadas;
 - biblioteca de assets organizada, complementada, desativada pelo usuário ou pendente, com página e localização;
 - índice auxiliar dos templates e sua localização, incluindo evidências e campos não testados;
-- máscaras substituídas e inventário de cada máscara restante com justificativa;
+- máscaras substituídas e inventário de cada máscara restante, distinguindo fundos geométricos preservados por regra de outras permanências justificadas;
 - camadas removidas com segurança;
 - conferência de integridade dos textos após separações;
 - cobertura das comparações com o estado anterior e com a referência aprovada, identificando as versões;

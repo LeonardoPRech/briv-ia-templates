@@ -25,10 +25,14 @@ Comparar com tamanho, fundo e renderização equivalentes. Inspecionar regiões 
 
 ## Máscaras restantes — um registro por máscara
 
-| ID/localização | Função e origem | Alternativas avaliadas | Justificativa técnica | Evidência visual | Impacto na substituição e pendência |
+| ID/localização | Função, origem e classificação | Alternativas avaliadas ou regra de preservação | Justificativa técnica | Evidência visual | Impacto na substituição e pendência |
 | --- | --- | --- | --- | --- | --- |
 
-Registrar inclusive máscaras intencionais. Se nenhuma permanecer, afirmar isso somente após inspecionar o escopo completo. Conveniência não é justificativa para preservar máscara herdada com alternativa fiel e reutilizável.
+Registrar inclusive máscaras intencionais. Classificar os fundos em formas geométricas características como **preservação obrigatória**, com IDs separados da forma/máscara, fotografia, fonte completa e pessoa independente quando houver. Nesse caso, registrar alternativas como “não se aplica — preservação exigida pela regra de fundo geométrico”; a máscara correta não é uma pendência nem deve ser eliminada para atingir zero.
+
+Registrar o teste de troca somente da fotografia por imagem retangular autorizada, sem pré-recorte: mesma forma nativa e contorno, enquadramento conferido, pessoa/filtro/grafismos independentes e temporários removidos. Distinguir teste feito de teste indisponível. Fundo já achatado sem fonte recuperável continua pendente; não declarar máscara restaurada.
+
+Nas demais máscaras, registrar alternativas e justificativa técnica. Se nenhuma permanecer, afirmar isso somente após inspecionar o escopo completo e confirmar que não foi eliminada uma máscara geométrica de fundo necessária. Conveniência não é justificativa para preservar máscara herdada com alternativa fiel e reutilizável fora da exceção.
 
 ## Textos separados
 
@@ -64,6 +68,7 @@ Conferir um auto-layout horizontal por item, ícone e texto diretos e pilha vert
 
 - Página existente, section, localização e vínculo com as peças; conteúdo anterior preservado.
 - Asset completo versus recorte de aplicação; origem, transparência e resolução observadas.
+- Para fundo geométrico, fonte completa, conjunto editável de forma/máscara + fotografia e vínculo no índice; prévia raster identificada como auxiliar, nunca como substituta.
 - Peça/cópia temporária, alteração exata testada, resultado e evidência.
 - Restauração de conteúdo e remoção dos temporários.
 - Testes não realizados e seu motivo; não tratar uma amostra como garantia geral.
